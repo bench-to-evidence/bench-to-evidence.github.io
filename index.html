@@ -3,237 +3,125 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Bench to Evidence | AAAI-27 Bridge</title>
-<meta name="description" content="From Agent Benchmarks to Deployment Evidence: Bridging Evaluation Science and Deployment Practice. AAAI-27 Bridge Program, February 16-17, 2027, Montréal.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<title>From Agent Benchmarks to Deployment Evidence | AAAI-27 Bridge</title>
+<meta name="description" content="AAAI-27 Bridge Program, February 16-17, 2027, Montréal. Bridging evaluation science and deployment practice for AI agents.">
 <style>
-:root{--bg:#f7f5f0;--surface:#ffffff;--ink:#16202a;--muted:#5a6672;--line:#e2ddd3;--accent:#0f6e6a;--accent-soft:#e3f0ee;--max:1040px}
-@media (prefers-color-scheme:dark){:root{--bg:#11161b;--surface:#182028;--ink:#e8ecef;--muted:#9aa6b1;--line:#28323c;--accent:#5cc2b8;--accent-soft:#16302e}}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 Inter,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
-a{color:var(--accent)}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
-header.nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
-.brand{font-family:Fraunces,Georgia,serif;font-weight:650;font-size:19px;color:var(--ink);text-decoration:none;white-space:nowrap}
-.brand span{color:var(--accent)}
-nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
-nav a{color:var(--muted);text-decoration:none;font-size:14.5px;font-weight:500}
-nav a:hover{color:var(--ink)}
-@media (max-width:820px){nav{display:none}}
-.hero{padding:88px 0 72px;border-bottom:1px solid var(--line)}
-.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);padding:5px 12px;border-radius:999px;margin-bottom:22px}
-h1{font-family:Fraunces,Georgia,serif;font-weight:650;font-size:clamp(34px,5.4vw,58px);line-height:1.08;letter-spacing:-.015em;margin:0 0 18px;max-width:15ch}
-.subtitle{font-size:clamp(18px,2.2vw,22px);color:var(--muted);margin:0 0 34px;max-width:40ch}
-.meta{display:flex;flex-wrap:wrap;gap:12px 28px;font-size:15.5px;margin-bottom:36px}
-.meta div{display:flex;flex-direction:column}
-.meta b{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
-.btns{display:flex;flex-wrap:wrap;gap:12px}
-.btn{display:inline-block;padding:11px 20px;border-radius:8px;font-weight:600;font-size:15px;text-decoration:none;border:1px solid var(--accent)}
-.btn.primary{background:var(--accent);color:var(--bg)}
-.btn.ghost{color:var(--accent)}
-section{padding:72px 0;border-bottom:1px solid var(--line)}
-h2{font-family:Fraunces,Georgia,serif;font-weight:650;font-size:clamp(26px,3.4vw,34px);letter-spacing:-.01em;margin:0 0 20px}
-h3{font-size:18px;margin:0 0 8px}
-.lede{font-size:19px;max-width:62ch}
-p{max-width:68ch}
-.question{font-family:Fraunces,Georgia,serif;font-size:clamp(21px,2.8vw,28px);line-height:1.35;border-left:4px solid var(--accent);padding:4px 0 4px 22px;margin:28px 0;max-width:36ch}
-.grid{display:grid;gap:18px}
-.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px}
-.card p{margin:0;color:var(--muted);font-size:15.5px}
-.tag{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;display:block}
-.num{font-family:Fraunces,Georgia,serif;font-size:28px;color:var(--accent);line-height:1;margin-bottom:10px;display:block}
-.day{margin-top:28px}
-.day h3{font-family:Fraunces,Georgia,serif;font-size:22px;font-weight:650;margin-bottom:14px}
-.slot{display:grid;grid-template-columns:150px 1fr;gap:18px;padding:16px 0;border-top:1px solid var(--line)}
-.slot b{font-size:14px;color:var(--accent);font-weight:600}
-.slot h4{margin:0 0 4px;font-size:16.5px}
-.slot p{margin:0;color:var(--muted);font-size:15.5px}
-@media (max-width:600px){.slot{grid-template-columns:1fr;gap:4px}}
-ul.clean{padding-left:20px;max-width:68ch}
-ul.clean li{margin-bottom:8px}
-table{width:100%;border-collapse:collapse;font-size:15.5px;background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-td{padding:14px 18px;border-top:1px solid var(--line);vertical-align:top}
-tr:first-child td{border-top:none}
-td:first-child{width:190px;font-weight:600;white-space:nowrap}
-@media (max-width:600px){td{display:block;width:auto!important;padding:4px 18px}td:first-child{padding-top:14px}td:last-child{padding-bottom:14px}tr+tr td:first-child{border-top:1px solid var(--line)}td+td{border-top:none}}
-.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
-.person{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
-.person b{display:block;font-size:16px}
-.person span{color:var(--muted);font-size:14.5px}
-footer{padding:40px 0 56px;color:var(--muted);font-size:14.5px}
+body{margin:0;background:#fff;color:#222;font:16px/1.6 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
+a{color:#1a5ea8}
+.page{max-width:820px;margin:0 auto;padding:0 20px}
+header{border-bottom:1px solid #ddd;padding:36px 0 20px}
+header h1{font-size:30px;line-height:1.25;margin:0 0 6px}
+header .sub{font-size:19px;color:#444;margin:0 0 14px}
+header .when{margin:0;font-size:16px}
+nav{border-bottom:1px solid #ddd;padding:10px 0;font-size:15px}
+nav a{margin-right:18px;text-decoration:none;white-space:nowrap}
+nav a:hover{text-decoration:underline}
+h2{font-size:22px;margin:40px 0 10px;padding-bottom:4px;border-bottom:1px solid #eee}
+h3{font-size:17px;margin:24px 0 6px}
+p,li{max-width:72ch}
+ul{padding-left:22px}
+li{margin-bottom:6px}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid #e5e5e5}
+th{background:#f5f5f5;font-weight:600}
+td.t{white-space:nowrap;width:1%;padding-right:20px}
+.muted{color:#666}
+footer{border-top:1px solid #ddd;margin-top:48px;padding:18px 0 40px;font-size:14px;color:#666}
+@media (max-width:600px){header h1{font-size:24px}td.t{white-space:normal}}
 </style>
 </head>
 <body>
+<div class="page">
 
-<header class="nav">
-  <div class="wrap">
-    <a class="brand" href="#">Bench <span>to</span> Evidence</a>
-    <nav><ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#communities">Communities</a></li>
-      <li><a href="#program">Program</a></li>
-      <li><a href="#cases">Cases</a></li>
-      <li><a href="#participate">Participate</a></li>
-      <li><a href="#dates">Dates</a></li>
-      <li><a href="#organizers">Organizers</a></li>
-    </ul></nav>
-  </div>
+<header>
+  <h1>From Agent Benchmarks to Deployment Evidence</h1>
+  <p class="sub">Bridging Evaluation Science and Deployment Practice</p>
+  <p class="when"><strong>AAAI-27 Bridge Program</strong> · February 16–17, 2027 · Palais des Congrès, Montréal, Canada</p>
 </header>
 
-<main>
-<div class="hero">
-  <div class="wrap">
-    <span class="eyebrow">AAAI-27 Bridge Program</span>
-    <h1>From Agent Benchmarks to Deployment Evidence</h1>
-    <p class="subtitle">Bridging evaluation science and deployment practice</p>
-    <div class="meta">
-      <div><b>Dates</b>February 16–17, 2027</div>
-      <div><b>Venue</b>Palais des Congrès, Montréal, Canada</div>
-      <div><b>Format</b>Two days, in person</div>
-    </div>
-    <div class="btns">
-      <a class="btn primary" href="#participate">How to participate</a>
-      <a class="btn ghost" href="#program">See the program</a>
-    </div>
-  </div>
-</div>
+<nav>
+  <a href="#overview">Overview</a>
+  <a href="#participation">Call for Participation</a>
+  <a href="#schedule">Schedule</a>
+  <a href="#cases">Cases</a>
+  <a href="#dates">Important Dates</a>
+  <a href="#organizers">Organizers</a>
+</nav>
 
-<section id="about">
-  <div class="wrap">
-    <h2>About the Bridge</h2>
-    <p class="lede">Organizations increasingly decide whether to deploy AI agents on the strength of benchmark scores, yet no shared practice connects a benchmark result to the decision it is meant to inform.</p>
-    <p>Task success, the headline metric of most agent benchmarks, records whether an objective was met. It does not show how the objective was met, whether the task reflects the setting where the agent will be used, or whether the agent leaked data, broke policy, took unacceptable actions, or needed so much correction that it saved no one any time. The knowledge needed to close this gap is split between people who build and study evaluations and people who decide whether an agent enters a real workflow and supervise it once it does.</p>
-    <p class="question">Under what conditions do agent-benchmark results justify claims about reliability, cost, and usefulness in a specified operational setting?</p>
-    <p>Participants start from an operational setting and derive its deployment criteria before looking at any benchmark. They then examine which criteria the benchmark supports, which consequential failures it misses, and what a supervised pilot must still establish.</p>
-    <div class="grid g3" style="margin-top:32px">
-      <div class="card"><span class="num">2</span><h3>Worked case audits</h3><p>Each links a proposed use to the available evidence, unmeasured failure classes, consequence-weighted outcomes, and a next test.</p></div>
-      <div class="card"><span class="num">v0.1</span><h3>A versioned protocol</h3><p>Builds on PREP-Eval and maps to ABC, BetterBench, and Evaluation Cards, specifying how teams conduct, report, and update this analysis.</p></div>
-      <div class="card"><span class="num">1</span><h3>A growing community</h3><p>Evaluation researchers and deployment practitioners working from a shared method, with a follow-up meeting after the event.</p></div>
-    </div>
-  </div>
-</section>
+<h2 id="overview">Overview</h2>
+<p>Organizations increasingly decide whether to deploy agents on the strength of benchmark scores, yet there is no shared practice for connecting a benchmark result to the decision it is meant to inform. Task success, the headline metric of most agent benchmarks, records whether an objective was met. It does not record how it was met, whether the task matches the setting the agent will work in, or whether the agent leaked private data, violated policy, took unacceptable actions, or needed so much correction that it saved the operator no time.</p>
+<p>The knowledge needed to close this gap sits in two communities. The AI evaluation community (benchmark builders, agent developers, and measurement researchers) knows how scores are produced and what they can mean. The deployment practice community (workflow owners, domain experts, applied AI engineers, and reliability, safety, and human factors specialists) knows which failures are unacceptable, how people check and correct an agent's work, and what must hold before use is authorized. This Bridge brings the two together around one question:</p>
+<p><em>Under what conditions do agent-benchmark results justify claims about reliability, cost, and usefulness in a specified operational setting?</em></p>
+<p>Participants start from an operational setting and derive its deployment criteria before seeing any benchmark. They then examine which criteria the benchmark supports, which consequential failures it misses, and what a supervised pilot must still establish. This edition covers two application domains: industrial asset operations and maintenance, and software engineering.</p>
+<p>The Bridge will produce two worked case audits and a versioned protocol draft that builds on <a href="https://prep-eval.github.io/prep-eval/">PREP-Eval</a> and maps to the Agentic Benchmark Checklist, BetterBench, and Evaluation Cards.</p>
 
-<section id="communities">
-  <div class="wrap">
-    <h2>Two communities, one method</h2>
-    <div class="grid g2">
-      <div class="card">
-        <span class="tag">AI evaluation</span>
-        <h3>Benchmark builders, agent developers, measurement researchers</h3>
-        <p>Bring tasks, datasets, scoring code, traces, and methods from measurement and validity theory, psychometrics, and applied statistics. Learn which decisions, constraints, and consequences a score must serve.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Deployment practice</span>
-        <h3>Workflow owners, domain experts, applied AI engineers, assurance specialists</h3>
-        <p>Bring knowledge of which failures are unacceptable, how people check and correct an agent, and what must hold before use is authorized. Learn what conclusions a benchmark supports and what a pilot must still show.</p>
-      </div>
-    </div>
-    <p style="margin-top:26px">This edition focuses on two application domains where agents are already being evaluated for deployment: <strong>industrial asset operations and maintenance</strong> and <strong>software engineering</strong>.</p>
-  </div>
-</section>
+<h2 id="participation">Call for Participation</h2>
+<p>We invite participants from both communities, including:</p>
+<ul>
+  <li>applied AI researchers and engineers working on predictive maintenance, AI for software engineering, or expert annotation;</li>
+  <li>maintenance and reliability engineers, plant operators, software engineers, and engineering leads;</li>
+  <li>measurement researchers, benchmark authors, and agent developers;</li>
+  <li>safety assurance and human factors researchers;</li>
+  <li>graduate and undergraduate students.</li>
+</ul>
+<p>To take part, submit a short case statement or interest statement by <strong>December 1, 2026</strong>. Reports and posters will be presented in a lightning session on Day 2. Practitioners who cannot travel can contribute remotely by completing the audit template and reviewing draft audits.</p>
+<p class="muted">Submission instructions will be posted here. Attendance requires AAAI-27 registration (Bridge add-on or Bridge-only).</p>
 
-<section id="program">
-  <div class="wrap">
-    <h2>Program</h2>
-    <p>One day of education followed by one day of collaboration. Mixed teams of six to eight work through three questions: what should be measured and what is, what supports the interpretation, and how evidence is reported and maintained.</p>
+<h2 id="schedule">Schedule</h2>
+<p>Day 1 is focused on education and Day 2 on collaboration. Participants work in mixed teams of six to eight.</p>
+<table>
+  <tr><th>Session</th><th>Activity</th></tr>
+  <tr><td class="t">Day 1, morning</td><td><strong>Deriving the criteria.</strong> Reciprocal tutorials by practitioners, measurement researchers, and agent developers. Teams receive the operational setting of the maintenance case, derive deployment criteria, and rank failures by consequence before the benchmark is revealed.</td></tr>
+  <tr><td class="t">Day 1, afternoon</td><td><strong>Inspecting the evidence.</strong> A trace subgroup scores saved traces against the automatic judge and separates scorer defects from agent failures. A setting subgroup checks the criteria against a practitioner-completed fidelity worksheet.</td></tr>
+  <tr><td class="t">Day 2, morning</td><td><strong>Challenging the interpretation.</strong> Lightning talks and posters, each with a methodological and a practitioner response. Teams then work on the developer-productivity case and design one additional evaluation.</td></tr>
+  <tr><td class="t">Day 2, afternoon</td><td><strong>Cross-review and synthesis.</strong> Teams review each other's audits. A joint session merges them into the two worked audits and the protocol draft.</td></tr>
+</table>
+<p class="muted">A detailed schedule with times will be posted closer to the event. No coding is needed for the setting subgroup; starter notebooks are provided for the trace subgroup.</p>
 
-    <div class="day">
-      <h3>Day 1 · Tuesday, February 16</h3>
-      <div class="slot"><b>Morning</b><div><h4>Derive the criteria</h4><p>Reciprocal tutorials in which practitioners, measurement researchers, and agent developers teach each other. Teams then receive only the operational setting of the maintenance case, derive its deployment criteria, and rank failures by consequence before the benchmark is revealed.</p></div></div>
-      <div class="slot"><b>Afternoon</b><div><h4>Inspect the evidence</h4><p>A trace subgroup scores saved traces against the automatic judge and separates scorer defects from agent failures. A setting subgroup checks the criteria against a practitioner-completed fidelity worksheet. Findings go into a shared audit template.</p></div></div>
-    </div>
+<h2 id="cases">Cases</h2>
+<h3>Case 1: Industrial asset maintenance</h3>
+<p>A configured agent system in the simulated maintenance environment of <a href="https://arxiv.org/abs/2506.03828">AssetOpsBench</a>. Teams ask whether a successful score supports the proposed operational claim and where an operator would need to check, correct, or stop the system. Maintenance practitioners review the workflow description and complete a fidelity worksheet for the simulated environment.</p>
+<h3>Case 2: Software engineering</h3>
+<p>A human–agent workflow, using METR's <a href="https://arxiv.org/abs/2507.09089">developer-productivity study</a> and its released task-level data, paired with a configured agent on SWE-bench Verified. Teams examine what self-reported completion time captures, how a small number of developers affects uncertainty, and what evidence would support extending the findings.</p>
+<p>Neither case requires production access or private traces. Part A of each case packet (the operational setting and audit template), along with a worked example on τ²-bench, will be published before the event.</p>
 
-    <div class="day">
-      <h3>Day 2 · Wednesday, February 17</h3>
-      <div class="slot"><b>Morning</b><div><h4>Challenge the interpretation</h4><p>Lightning presentations of contributed reports and posters, each followed by one methodological and one practitioner response. Teams then take up the developer-productivity case and design one additional evaluation.</p></div></div>
-      <div class="slot"><b>Afternoon</b><div><h4>Cross-review and synthesize</h4><p>Teams exchange and challenge each other's audits. A joint session merges them into the two worked audits and a protocol draft, recording disagreements and the changes that should trigger reevaluation.</p></div></div>
-    </div>
-    <p style="margin-top:24px;color:var(--muted);font-size:15.5px">No coding is required for the setting subgroup. Starter notebooks and coding assistants support the trace subgroup.</p>
-  </div>
-</section>
+<h2 id="dates">Important Dates</h2>
+<table>
+  <tr><td class="t">December 1, 2026</td><td>Case or interest statements due</td></tr>
+  <tr><td class="t">December 13, 2026</td><td>Participation decisions</td></tr>
+  <tr><td class="t">January 6, 2027</td><td>Case packets (Part A) and worked example released</td></tr>
+  <tr><td class="t">February 16–17, 2027</td><td>Bridge at AAAI-27, Montréal</td></tr>
+  <tr><td class="t">March 19, 2027</td><td>Reviewed audits and protocol v0.1 released</td></tr>
+  <tr><td class="t">May 2027</td><td>Follow-up meeting</td></tr>
+</table>
 
-<section id="cases">
-  <div class="wrap">
-    <h2>Shared cases</h2>
-    <div class="grid g2">
-      <div class="card">
-        <span class="tag">Case 1 · Industrial maintenance</span>
-        <h3>A configured agent system in AssetOpsBench</h3>
-        <p>Teams ask whether a successful score supports the proposed operational claim and where an operator would need to check, correct, or stop the system. Maintenance practitioners classify each simulated element by how faithfully it represents the real workflow.</p>
-      </div>
-      <div class="card">
-        <span class="tag">Case 2 · Software engineering</span>
-        <h3>A human–agent workflow: METR's developer-productivity study</h3>
-        <p>Using the published study and its released task-level data, paired with a configured agent on SWE-bench Verified, teams examine what completion time captures, how uncertainty behaves with few developers, and what would justify extending the findings.</p>
-      </div>
-    </div>
-    <p style="margin-top:26px">Neither case requires production access or private traces. Part A of each case packet (the operational setting and audit template) and a worked example on τ²-bench will be published before the event. Part B is released only when its case is introduced.</p>
-  </div>
-</section>
+<h2 id="organizers">Organizers</h2>
+<ul>
+  <li>Vedant Khandelwal, IBM Research</li>
+  <li>Dhaval Patel, IBM Research</li>
+  <li>Alexandre Drouin, Cohere</li>
+  <li>Lior Horesh, IBM Research</li>
+  <li>Jason Stanley, ServiceNow</li>
+  <li>Lora Aroyo, Google DeepMind</li>
+  <li>Yining Hua, Harvard T.H. Chan School of Public Health</li>
+  <li>Corina Păsăreanu, Carnegie Mellon University</li>
+  <li>Anka Reuel, Stanford University (Harvard Kennedy School and Harvard SEAS from January 2027)</li>
+</ul>
+<h3>Steering Committee</h3>
+<ul>
+  <li>Amit Sheth, University of South Carolina and IAIRO</li>
+  <li>Francesca Rossi, IBM Research</li>
+  <li>Craig S. Greenberg, NIST</li>
+  <li>José Hernández-Orallo, University of Cambridge</li>
+</ul>
 
-<section id="participate">
-  <div class="wrap">
-    <h2>Participate</h2>
-    <p>We welcome applied AI researchers and engineers in predictive maintenance, AI for software engineering, and expert annotation; maintenance and reliability engineers; software engineering practitioners and leads; measurement researchers; benchmark authors; agent developers; and students. We plan for 100–150 participants in 13–20 mixed teams.</p>
-    <ul class="clean">
-      <li><strong>Attend:</strong> submit a short case statement or interest statement. Submission instructions will be posted on this page.</li>
-      <li><strong>Contribute:</strong> reports and posters are presented in a lightning session on Day 2.</li>
-      <li><strong>Join remotely:</strong> practitioners who cannot travel can complete the audit template and review draft audits asynchronously.</li>
-    </ul>
-    <p>Registration is through AAAI-27, as a Bridge add-on or a Bridge-only registration.</p>
-  </div>
-</section>
-
-<section id="dates">
-  <div class="wrap">
-    <h2>Important dates</h2>
-    <table>
-      <tr><td>December 1, 2026</td><td>Case or interest statements due</td></tr>
-      <tr><td>December 13, 2026</td><td>Participation decisions</td></tr>
-      <tr><td>January 6, 2027</td><td>Part A of each case packet and the τ²-bench worked example published</td></tr>
-      <tr><td>February 16–17, 2027</td><td>Bridge at AAAI-27, Montréal</td></tr>
-      <tr><td>March 19, 2027</td><td>Reviewed audits and protocol v0.1 released</td></tr>
-      <tr><td>By May 18, 2027</td><td>Follow-up meeting to review the protocol and external applications</td></tr>
-    </table>
-  </div>
-</section>
-
-<section id="organizers">
-  <div class="wrap">
-    <h2>Organizers</h2>
-    <div class="people">
-      <div class="person"><b>Vedant Khandelwal</b><span>IBM Research</span></div>
-      <div class="person"><b>Dhaval Patel</b><span>IBM Research</span></div>
-      <div class="person"><b>Alexandre Drouin</b><span>Cohere</span></div>
-      <div class="person"><b>Lior Horesh</b><span>IBM Research</span></div>
-      <div class="person"><b>Jason Stanley</b><span>ServiceNow</span></div>
-      <div class="person"><b>Lora Aroyo</b><span>Google DeepMind</span></div>
-      <div class="person"><b>Yining Hua</b><span>Harvard T.H. Chan School of Public Health</span></div>
-      <div class="person"><b>Corina Păsăreanu</b><span>Carnegie Mellon University</span></div>
-      <div class="person"><b>Anka Reuel</b><span>Stanford University; Harvard Kennedy School and Harvard SEAS from January 2027</span></div>
-    </div>
-    <h3 style="margin-top:40px;font-family:Fraunces,Georgia,serif;font-size:22px">Steering committee</h3>
-    <div class="people" style="margin-top:14px">
-      <div class="person"><b>Amit Sheth</b><span>University of South Carolina and IAIRO</span></div>
-      <div class="person"><b>Francesca Rossi</b><span>IBM Research</span></div>
-      <div class="person"><b>Craig S. Greenberg</b><span>NIST</span></div>
-      <div class="person"><b>José Hernández-Orallo</b><span>University of Cambridge</span></div>
-    </div>
-  </div>
-</section>
-</main>
+<h2 id="contact">Contact</h2>
+<p>Questions can be sent to Vedant Khandelwal at <a href="mailto:vedantk@ibm.com">vedantk@ibm.com</a>.</p>
 
 <footer>
-  <div class="wrap">
-    Contact: <a href="mailto:vedantk@ibm.com">vedantk@ibm.com</a> · Part of the <a href="https://aaai.org/conference/aaai/aaai-27/">AAAI-27</a> Bridge Program, February 16–17, 2027, Montréal.
-  </div>
+  Part of the <a href="https://aaai.org/conference/aaai/aaai-27/">AAAI-27</a> Bridge Program.
 </footer>
 
+</div>
 </body>
 </html>
