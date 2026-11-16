@@ -4,124 +4,726 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>From Agent Benchmarks to Deployment Evidence | AAAI-27 Bridge</title>
-<meta name="description" content="AAAI-27 Bridge Program, February 16-17, 2027, Montréal. Bridging evaluation science and deployment practice for AI agents.">
+<meta name="description" content="AAAI-27 Bridge Program, February 16–17, 2027, Montréal. Evaluators and practitioners audit agent benchmark evidence against real deployment decisions. Submissions due December 1, 2026 (AoE).">
+<meta property="og:title" content="From Agent Benchmarks to Deployment Evidence">
+<meta property="og:description" content="An AAAI-27 Bridge connecting evaluation science and deployment practice. February 16–17, 2027, Montréal.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bench-to-evidence.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
 <style>
-body{margin:0;background:#fff;color:#222;font:16px/1.6 -apple-system,"Segoe UI",Helvetica,Arial,sans-serif}
-a{color:#1a5ea8}
-.page{max-width:820px;margin:0 auto;padding:0 20px}
-header{border-bottom:1px solid #ddd;padding:36px 0 20px}
-header h1{font-size:30px;line-height:1.25;margin:0 0 6px}
-header .sub{font-size:19px;color:#444;margin:0 0 14px}
-header .when{margin:0;font-size:16px}
-nav{border-bottom:1px solid #ddd;padding:10px 0;font-size:15px}
-nav a{margin-right:18px;text-decoration:none;white-space:nowrap}
-nav a:hover{text-decoration:underline}
-h2{font-size:22px;margin:40px 0 10px;padding-bottom:4px;border-bottom:1px solid #eee}
-h3{font-size:17px;margin:24px 0 6px}
-p,li{max-width:72ch}
-ul{padding-left:22px}
-li{margin-bottom:6px}
-table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
-th,td{text-align:left;vertical-align:top;padding:8px 10px;border-bottom:1px solid #e5e5e5}
-th{background:#f5f5f5;font-weight:600}
-td.t{white-space:nowrap;width:1%;padding-right:20px}
-.muted{color:#666}
-footer{border-top:1px solid #ddd;margin-top:48px;padding:18px 0 40px;font-size:14px;color:#666}
-@media (max-width:600px){header h1{font-size:24px}td.t{white-space:normal}}
+:root{
+  --paper:#f6f5f0; --surface:#ffffff; --sunk:#eeece5;
+  --ink:#16181d; --ink-2:#464b55; --ink-3:#6b707a;
+  --line:#dcd9cf; --line-2:#c9c5b8;
+  --accent:#1f4e8c; --accent-ink:#ffffff; --accent-soft:#e3ebf6;
+  --ok:#2c7a55; --ok-soft:#e1f1e8;
+  --part:#9a6a12; --part-soft:#f7ecd3;
+  --miss:#b03f2a; --miss-soft:#f7e2dc;
+  --pilot:#4f46a8; --pilot-soft:#e7e5f7;
+  --serif:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --sans:Inter,-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --radius:10px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121418; --surface:#1a1d23; --sunk:#16191e;
+    --ink:#ecebe6; --ink-2:#b9bcc4; --ink-3:#8d929c;
+    --line:#2c3038; --line-2:#3a3f49;
+    --accent:#8db4ec; --accent-ink:#0f1a2b; --accent-soft:#1c2a3f;
+    --ok:#6cc39a; --ok-soft:#173326;
+    --part:#e0b45c; --part-soft:#33290f;
+    --miss:#ec8a73; --miss-soft:#3a1d16;
+    --pilot:#a9a2f0; --pilot-soft:#25223f;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121418; --surface:#1a1d23; --sunk:#16191e;
+  --ink:#ecebe6; --ink-2:#b9bcc4; --ink-3:#8d929c;
+  --line:#2c3038; --line-2:#3a3f49;
+  --accent:#8db4ec; --accent-ink:#0f1a2b; --accent-soft:#1c2a3f;
+  --ok:#6cc39a; --ok-soft:#173326;
+  --part:#e0b45c; --part-soft:#33290f;
+  --miss:#ec8a73; --miss-soft:#3a1d16;
+  --pilot:#a9a2f0; --pilot-soft:#25223f;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px}
+a:hover{text-decoration-thickness:2px}
+img{display:block;max-width:100%}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-height:1.15;margin:0}
+h2{font-size:clamp(28px,3.4vw,38px)}
+h3{font-size:21px}
+p{margin:0 0 14px}
+.label{font:500 12px/1.4 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+/* ---------- top bar ---------- */
+.topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:20px;height:60px}
+.brand{font:600 15px/1.2 var(--sans);color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px;white-space:nowrap}
+.brand-mark{width:26px;height:26px;flex:none}
+.topnav{display:flex;gap:18px;margin-left:auto;font-size:14px}
+.topnav a{color:var(--ink-2);text-decoration:none}
+.topnav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:10px 16px;font:600 14px/1 var(--sans);text-decoration:none;border:1px solid transparent;white-space:nowrap}
+.btn-primary{background:var(--accent);color:var(--accent-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-ghost{border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{background:var(--surface)}
+.topbar .btn{padding:8px 14px}
+
+/* ---------- hero ---------- */
+.hero{padding:64px 0 56px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+.eyebrow{display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:22px}
+.eyebrow span{font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);padding:7px 10px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface)}
+.hero h1{font-size:clamp(36px,5vw,58px);margin-bottom:12px}
+.hero .sub{font:500 clamp(18px,2vw,21px)/1.4 var(--sans);color:var(--ink-2);margin-bottom:26px}
+.hero .lead{font:500 19px/1.5 var(--serif);border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin-bottom:28px;color:var(--ink)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
+.fact{padding:14px 16px;border-right:1px solid var(--line)}
+.fact:last-child{border-right:0}
+.fact b{display:block;font:600 16px/1.3 var(--sans);margin-top:4px}
+.fact small{color:var(--ink-3);font-size:13px}
+
+/* audit sheet */
+.sheet{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 1px 0 var(--line),0 18px 40px -24px rgba(20,24,32,.35);overflow:hidden}
+.sheet-head{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--sunk)}
+.sheet-claim{padding:16px 18px;border-bottom:1px dashed var(--line-2)}
+.sheet-claim p{margin:6px 0 0;font:500 16px/1.45 var(--serif)}
+.sheet table{width:100%;border-collapse:collapse;font-size:14px}
+.sheet th{font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:10px 18px 8px;border-bottom:1px solid var(--line)}
+.sheet td{padding:11px 18px;border-bottom:1px solid var(--line);vertical-align:top}
+.sheet td:first-child{width:52%}
+.sheet td .ev{display:block;color:var(--ink-3);font-size:12.5px;margin-top:2px}
+.chip{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);padding:5px 9px;border-radius:999px;white-space:nowrap}
+.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.chip.ok{color:var(--ok);background:var(--ok-soft)}
+.chip.part{color:var(--part);background:var(--part-soft)}
+.chip.miss{color:var(--miss);background:var(--miss-soft)}
+.chip.pilot{color:var(--pilot);background:var(--pilot-soft)}
+.sheet-foot{padding:14px 18px;font-size:14px;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
+.sheet-foot strong{color:var(--ink)}
+.sheet-caption{font-size:13px;color:var(--ink-3);margin-top:12px}
+
+/* ---------- sections ---------- */
+section{padding:80px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:grid;grid-template-columns:260px 1fr;gap:40px;margin-bottom:40px;align-items:start}
+.sec-head .label{padding-top:12px}
+.sec-head h2{margin-bottom:14px}
+.sec-head p{color:var(--ink-2);max-width:68ch;font-size:17px}
+
+/* two communities */
+.bridge{display:grid;grid-template-columns:1fr 120px 1fr;align-items:stretch}
+.side{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.side h3{margin-bottom:6px}
+.side .who{color:var(--ink-3);font-size:14px;margin-bottom:14px}
+.side ul{margin:0;padding-left:18px;color:var(--ink-2)}
+.side li{margin-bottom:6px}
+.span{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--ink-3)}
+.span svg{width:100%;height:44px}
+.span .label{text-align:center}
+.question{margin-top:28px;padding:22px 26px;border-radius:var(--radius);background:var(--accent-soft);font:500 clamp(18px,2vw,22px)/1.45 var(--serif);color:var(--ink)}
+
+/* method */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:step;position:relative}
+.step{position:relative;padding:0 22px 0 0}
+.step .num{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.step .num b{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:500 14px var(--mono);background:var(--surface);border:1.5px solid var(--accent);color:var(--accent)}
+.step .num i{flex:1;height:1.5px;background:repeating-linear-gradient(90deg,var(--line-2) 0 6px,transparent 6px 11px)}
+.step:last-child .num i{display:none}
+.step h3{font-size:19px;margin-bottom:8px}
+.step p{color:var(--ink-2);font-size:15px}
+.outputs{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.out{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:var(--surface)}
+.out .label{margin-bottom:8px}
+.out p{margin:0;color:var(--ink-2);font-size:15px}
+
+/* topics */
+.topics{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.topics li{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;font-size:15px;color:var(--ink-2)}
+.topics li span{font:500 12px/1.9 var(--mono);color:var(--accent);flex:none}
+.topics li strong{color:var(--ink);font-weight:600;display:block;margin-bottom:2px}
+
+/* cases */
+.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:0;display:flex;flex-direction:column;overflow:hidden}
+.case-tab{display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--sunk)}
+.case-tab .day{font:500 12px var(--mono);color:var(--ink-2)}
+.case-body{padding:20px;display:flex;flex-direction:column;gap:14px;flex:1}
+.case h3{font-size:22px}
+.case dl{margin:0;display:grid;gap:10px}
+.case dt{font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.case dd{margin:2px 0 0;font-size:14.5px;color:var(--ink-2)}
+.case.optional{border-style:dashed;border-color:var(--line-2);background:transparent}
+.case.optional .case-tab{background:transparent;border-bottom-style:dashed}
+.tag-opt{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 8px;border-radius:6px;color:var(--part);background:var(--part-soft)}
+.note{margin-top:22px;font-size:15px;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
+.note svg{flex:none;margin-top:3px}
+
+/* format */
+.days{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.day-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
+.day-card header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
+.day-card h3{font-size:24px}
+.day-card .theme{color:var(--ink-3);font-size:14px;margin-bottom:16px}
+.blocks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.blocks li{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
+.blocks .when{font:500 12px/1.6 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
+.blocks b{display:block;font-weight:600;margin-bottom:2px}
+.blocks span{color:var(--ink-2);font-size:15px}
+.strip{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.strip div{padding:16px 18px;border-right:1px solid var(--line);font-size:15px;color:var(--ink-2)}
+.strip div:last-child{border-right:0}
+.strip strong{display:block;color:var(--ink);font-size:16px;margin-bottom:2px}
+
+/* participate */
+.audience{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:36px}
+.aud{border-top:2px solid var(--ink);padding-top:14px}
+.aud h3{font-size:17px;font-family:var(--sans);margin-bottom:8px}
+.aud ul{margin:0;padding-left:18px;color:var(--ink-2);font-size:15px}
+.paths{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.path{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;display:flex;flex-direction:column}
+.path h3{margin:8px 0 6px}
+.path .gets{font-size:14px;color:var(--accent);font-weight:600;margin-bottom:12px}
+.path ul{margin:0 0 6px;padding-left:18px;color:var(--ink-2);font-size:15px}
+.path li{margin-bottom:6px}
+.path .addon{margin-top:auto;padding:12px 14px;border-radius:8px;background:var(--sunk);font-size:14px;color:var(--ink-2)}
+.path .addon b{color:var(--ink)}
+.submitbar{margin-top:22px;display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between;padding:20px 22px;border-radius:14px;background:var(--ink);color:var(--paper)}
+.submitbar p{margin:0;font-size:15px;opacity:.9}
+.submitbar strong{font-size:17px;opacity:1}
+.submitbar .btn-primary{background:var(--paper);color:var(--ink)}
+
+/* dates */
+.timeline{list-style:none;margin:0;padding:0;max-width:760px}
+.timeline li{display:grid;grid-template-columns:200px 28px 1fr;align-items:start;gap:0 14px;position:relative;padding-bottom:22px}
+.timeline li::after{content:"";position:absolute;left:227px;top:18px;bottom:-4px;width:1.5px;background:var(--line-2)}
+.timeline li:last-child::after{display:none}
+.timeline time{font:500 14px/1.5 var(--mono);color:var(--ink-2);text-align:right}
+.timeline .dot{width:13px;height:13px;margin:5px auto 0;border-radius:50%;background:var(--paper);border:2px solid var(--line-2);position:relative;z-index:1}
+.timeline .what{font-size:16px}
+.timeline .what small{display:block;color:var(--ink-3);font-size:14px}
+.timeline li.key .dot{border-color:var(--accent);background:var(--accent)}
+.timeline li.key .what{font-weight:600}
+.timeline li.past{opacity:.5}
+.timeline li.next .what::after{content:"Next";margin-left:10px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 7px;border-radius:6px;background:var(--accent-soft);color:var(--accent);vertical-align:2px}
+
+/* people */
+.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:28px 22px}
+.person img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;background:var(--sunk);margin-bottom:12px;filter:saturate(.92)}
+.person h3{font:600 16px/1.3 var(--sans);margin-bottom:3px}
+.person .aff{font-size:14px;color:var(--ink-2);line-height:1.4;margin-bottom:6px}
+.person a{font:500 13px var(--sans);text-decoration:none}
+.person a:hover{text-decoration:underline}
+.people-sub{margin:56px 0 22px;display:flex;align-items:baseline;gap:14px}
+.people-sub h3{font-size:24px}
+.people.steer{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+
+/* contact + footer */
+.contact{display:grid;grid-template-columns:repeat(2,minmax(0,320px));gap:18px}
+.contact div{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px}
+.contact b{display:block}
+.contact small{color:var(--ink-3);display:block;margin-bottom:6px}
+footer{padding:34px 0 48px;color:var(--ink-3);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr;gap:40px}
+  .sec-head{grid-template-columns:1fr;gap:6px}
+  .sec-head .label{padding-top:0}
+  .cases,.paths,.audience,.outputs{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr;row-gap:28px}
+  .step:nth-child(2) .num i{display:none}
+  .days{grid-template-columns:1fr}
+  .topnav{display:none}
+  .topbar .btn{margin-left:auto}
+}
+@media (max-width:640px){
+  .wrap{padding:0 16px}
+  section{padding:56px 0}
+  .hero{padding:40px 0 44px}
+  .facts,.strip{grid-template-columns:1fr}
+  .fact,.strip div{border-right:0;border-bottom:1px solid var(--line)}
+  .fact:last-child,.strip div:last-child{border-bottom:0}
+  .bridge{grid-template-columns:1fr}
+  .span{flex-direction:row;padding:12px 0}
+  .span svg{width:44px;height:44px;transform:rotate(90deg)}
+  .steps{grid-template-columns:1fr}
+  .step .num i{display:none}
+  .sheet td,.sheet th{padding-left:14px;padding-right:14px}
+  .sheet td:first-child{width:auto}
+  .timeline li{grid-template-columns:22px 1fr;gap:0 12px}
+  .timeline time{grid-column:2;text-align:left;font-size:13px}
+  .timeline .dot{grid-row:1/span 2;grid-column:1}
+  .timeline .what{grid-column:2}
+  .timeline li::after{left:10px}
+  .people{grid-template-columns:repeat(2,1fr);gap:22px 14px}
+  .contact{grid-template-columns:1fr}
+  .blocks li{grid-template-columns:1fr;gap:4px}
+  .brand span{display:none}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 </head>
 <body>
-<div class="page">
 
-<header>
-  <h1>From Agent Benchmarks to Deployment Evidence</h1>
-  <p class="sub">Bridging Evaluation Science and Deployment Practice</p>
-  <p class="when"><strong>AAAI-27 Bridge Program</strong> · February 16–17, 2027 · Palais des Congrès, Montréal, Canada</p>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Bench to Evidence, home">
+      <svg class="brand-mark" viewBox="0 0 26 26" aria-hidden="true"><rect x="1" y="16" width="5" height="8" rx="1" fill="currentColor" opacity=".35"/><rect x="20" y="16" width="5" height="8" rx="1" fill="currentColor"/><path d="M3.5 16 C 8 5, 18 5, 22.5 16" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 13 H22.5" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2" opacity=".6"/></svg>
+      <span>Bench → Evidence · AAAI-27 Bridge</span>
+    </a>
+    <nav class="topnav" aria-label="Sections">
+      <a href="#why">Why</a>
+      <a href="#method">Method</a>
+      <a href="#cases">Cases</a>
+      <a href="#format">Format</a>
+      <a href="#participate">Participate</a>
+      <a href="#dates">Dates</a>
+      <a href="#organizers">Organizers</a>
+    </nav>
+    <a class="btn btn-primary" href="#participate">Submit by Dec 1</a>
+  </div>
 </header>
 
-<nav>
-  <a href="#overview">Overview</a>
-  <a href="#participation">Call for Participation</a>
-  <a href="#schedule">Schedule</a>
-  <a href="#cases">Cases</a>
-  <a href="#dates">Important Dates</a>
-  <a href="#organizers">Organizers</a>
-</nav>
+<main id="top">
 
-<h2 id="overview">Overview</h2>
-<p>Organizations increasingly decide whether to deploy agents on the strength of benchmark scores, yet there is no shared practice for connecting a benchmark result to the decision it is meant to inform. Task success, the headline metric of most agent benchmarks, records whether an objective was met. It does not record how it was met, whether the task matches the setting the agent will work in, or whether the agent leaked private data, violated policy, took unacceptable actions, or needed so much correction that it saved the operator no time.</p>
-<p>The knowledge needed to close this gap sits in two communities. The AI evaluation community (benchmark builders, agent developers, and measurement researchers) knows how scores are produced and what they can mean. The deployment practice community (workflow owners, domain experts, applied AI engineers, and reliability, safety, and human factors specialists) knows which failures are unacceptable, how people check and correct an agent's work, and what must hold before use is authorized. This Bridge brings the two together around one question:</p>
-<p><em>Under what conditions do agent-benchmark results justify claims about reliability, cost, and usefulness in a specified operational setting?</em></p>
-<p>Participants start from an operational setting and derive its deployment criteria before seeing any benchmark. They then examine which criteria the benchmark supports, which consequential failures it misses, and what a supervised pilot must still establish. This edition covers two application domains: industrial asset operations and maintenance, and software engineering.</p>
-<p>The Bridge will produce two worked case audits and a versioned protocol draft that builds on <a href="https://prep-eval.github.io/prep-eval/">PREP-Eval</a> and maps to the Agentic Benchmark Checklist, BetterBench, and Evaluation Cards.</p>
+<!-- ================= HERO ================= -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">
+        <span>AAAI-27 Bridge Program</span>
+        <span>Feb 16–17, 2027</span>
+        <span>Montréal · In person</span>
+      </div>
+      <h1>From Agent Benchmarks to Deployment Evidence</h1>
+      <p class="sub">Bridging evaluation science and deployment practice</p>
+      <p class="lead">Your team has a benchmark score for an agent. Is that enough to decide whether to deploy it in your setting?</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#participate">How to take part</a>
+        <a class="btn btn-ghost" href="#method">How the audit works</a>
+      </div>
+      <div class="facts">
+        <div class="fact"><span class="label">Submissions due</span><b>Dec 1, 2026</b><small id="countdown">Anywhere on Earth</small></div>
+        <div class="fact"><span class="label">Notifications</span><b>Dec 13, 2026</b><small>Audit teams formed</small></div>
+        <div class="fact"><span class="label">Where</span><b>Palais des Congrès</b><small>Montréal, Canada</small></div>
+      </div>
+    </div>
 
-<h2 id="participation">Call for Participation</h2>
-<p>We invite participants from both communities, including:</p>
-<ul>
-  <li>applied AI researchers and engineers working on predictive maintenance, AI for software engineering, or expert annotation;</li>
-  <li>maintenance and reliability engineers, plant operators, software engineers, and engineering leads;</li>
-  <li>measurement researchers, benchmark authors, and agent developers;</li>
-  <li>safety assurance and human factors researchers;</li>
-  <li>graduate and undergraduate students.</li>
-</ul>
-<p>To take part, submit a short case statement or interest statement by <strong>December 1, 2026</strong>. Reports and posters will be presented in a lightning session on Day 2. Practitioners who cannot travel can contribute remotely by completing the audit template and reviewing draft audits.</p>
-<p class="muted">Submission instructions will be posted here. Attendance requires AAAI-27 registration (Bridge add-on or Bridge-only).</p>
+    <figure style="margin:0">
+      <div class="sheet" role="group" aria-label="Illustrative audit sheet">
+        <div class="sheet-head">
+          <span class="label">Audit sheet · Case 1</span>
+          <span class="label">Illustrative</span>
+        </div>
+        <div class="sheet-claim">
+          <span class="label">Proposed use</span>
+          <p>An agent triages sensor alerts and drafts work orders for chillers at our plant.</p>
+        </div>
+        <table>
+          <thead><tr><th scope="col">What must hold</th><th scope="col">What the evidence says</th></tr></thead>
+          <tbody>
+            <tr><td>Identifies the right failure mode from an alert<span class="ev">Benchmark task success</span></td><td><span class="chip part">Partly supported</span></td></tr>
+            <tr><td>Results hold across repeated runs<span class="ev">Scores from repeated recorded runs</span></td><td><span class="chip ok">Supported</span></td></tr>
+            <tr><td>Never closes a work order without technician sign-off<span class="ev">Not scored</span></td><td><span class="chip miss">Missed</span></td></tr>
+            <tr><td>Cost per resolved alert stays within budget<span class="ev">Not reported</span></td><td><span class="chip miss">Missed</span></td></tr>
+            <tr><td>Saves operators time once corrections are counted<span class="ev">Not measured</span></td><td><span class="chip pilot">Pilot must show</span></td></tr>
+          </tbody>
+        </table>
+        <div class="sheet-foot">
+          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1.5 16.5 15h-15z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 7v3.6M9 12.4v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span><strong>Verdict:</strong> the score supports a supervised pilot, not deployment. Two serious failures are unmeasured.</span>
+        </div>
+      </div>
+      <figcaption class="sheet-caption">An example of what audit teams produce: criteria come from the operational setting first, then each one is checked against the evidence.</figcaption>
+    </figure>
+  </div>
+</div>
 
-<h2 id="schedule">Schedule</h2>
-<p>Day 1 is focused on education and Day 2 on collaboration. Participants work in mixed teams of six to eight.</p>
-<table>
-  <tr><th>Session</th><th>Activity</th></tr>
-  <tr><td class="t">Day 1, morning</td><td><strong>Deriving the criteria.</strong> Reciprocal tutorials by practitioners, measurement researchers, and agent developers. Teams receive the operational setting of the maintenance case, derive deployment criteria, and rank failures by consequence before the benchmark is revealed.</td></tr>
-  <tr><td class="t">Day 1, afternoon</td><td><strong>Inspecting the evidence.</strong> A trace subgroup scores saved traces against the automatic judge and separates scorer defects from agent failures. A setting subgroup checks the criteria against a practitioner-completed fidelity worksheet.</td></tr>
-  <tr><td class="t">Day 2, morning</td><td><strong>Challenging the interpretation.</strong> Lightning talks and posters, each with a methodological and a practitioner response. Teams then work on the developer-productivity case and design one additional evaluation.</td></tr>
-  <tr><td class="t">Day 2, afternoon</td><td><strong>Cross-review and synthesis.</strong> Teams review each other's audits. A joint session merges them into the two worked audits and the protocol draft.</td></tr>
-</table>
-<p class="muted">A detailed schedule with times will be posted closer to the event. No coding is needed for the setting subgroup; starter notebooks are provided for the trace subgroup.</p>
+<!-- ================= WHY ================= -->
+<section id="why">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">01 · Why this Bridge</span>
+      <div>
+        <h2>Answering takes two communities</h2>
+        <p>A headline score records whether an agent met its objective. It does not say how, whether the tasks resemble your setting, or whether the agent leaked data, broke policy, took an unacceptable action, or needed so much correction that it saved no one any time. The people who can close that gap rarely work together.</p>
+      </div>
+    </div>
 
-<h2 id="cases">Cases</h2>
-<h3>Case 1: Industrial asset maintenance</h3>
-<p>A configured agent system in the simulated maintenance environment of <a href="https://arxiv.org/abs/2506.03828">AssetOpsBench</a>. Teams ask whether a successful score supports the proposed operational claim and where an operator would need to check, correct, or stop the system. Maintenance practitioners review the workflow description and complete a fidelity worksheet for the simulated environment.</p>
-<h3>Case 2: Software engineering</h3>
-<p>A human–agent workflow, using METR's <a href="https://arxiv.org/abs/2507.09089">developer-productivity study</a> and its released task-level data, paired with a configured agent on SWE-bench Verified. Teams examine what self-reported completion time captures, how a small number of developers affects uncertainty, and what evidence would support extending the findings.</p>
-<p>Neither case requires production access or private traces. Part A of each case packet (the operational setting and audit template), along with a worked example on τ²-bench, will be published before the event.</p>
+    <div class="bridge">
+      <div class="side">
+        <span class="label">Evaluation science</span>
+        <h3>Evaluators know how scores are produced</h3>
+        <p class="who">Evaluation researchers, benchmark builders, agent developers</p>
+        <ul>
+          <li>Whether a benchmark and scorer measure what they claim</li>
+          <li>Contamination, run-to-run variance, and task coverage</li>
+          <li>What a number can and cannot support</li>
+        </ul>
+      </div>
+      <div class="span" aria-hidden="true">
+        <svg viewBox="0 0 120 44" preserveAspectRatio="none"><path d="M4 22 H116" stroke="currentColor" stroke-width="1.5" stroke-dasharray="4 4"/><path d="M14 14 4 22l10 8M106 14l10 8-10 8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span class="label">Shared<br>audit</span>
+      </div>
+      <div class="side">
+        <span class="label">Deployment practice</span>
+        <h3>Practitioners know what must hold</h3>
+        <p class="who">Maintenance, reliability, and software engineers; operators; safety and human factors specialists</p>
+        <ul>
+          <li>Which failures are unacceptable, and which are tolerable</li>
+          <li>How people check and correct an agent's work</li>
+          <li>What must hold before anyone authorizes use</li>
+        </ul>
+      </div>
+    </div>
 
-<h2 id="dates">Important Dates</h2>
-<table>
-  <tr><td class="t">December 1, 2026</td><td>Case or interest statements due</td></tr>
-  <tr><td class="t">December 13, 2026</td><td>Participation decisions</td></tr>
-  <tr><td class="t">January 6, 2027</td><td>Case packets (Part A) and worked example released</td></tr>
-  <tr><td class="t">February 16–17, 2027</td><td>Bridge at AAAI-27, Montréal</td></tr>
-  <tr><td class="t">March 19, 2027</td><td>Reviewed audits and protocol v0.1 released</td></tr>
-  <tr><td class="t">May 2027</td><td>Follow-up meeting</td></tr>
-</table>
+    <p class="question">This Bridge brings the two together to build a reusable method for connecting evaluation evidence to deployment decisions.</p>
+  </div>
+</section>
 
-<h2 id="organizers">Organizers</h2>
-<ul>
-  <li>Vedant Khandelwal, IBM Research</li>
-  <li>Dhaval Patel, IBM Research</li>
-  <li>Alexandre Drouin, Cohere</li>
-  <li>Lior Horesh, IBM Research</li>
-  <li>Jason Stanley, ServiceNow</li>
-  <li>Lora Aroyo, Google DeepMind</li>
-  <li>Yining Hua, Harvard T.H. Chan School of Public Health</li>
-  <li>Corina Păsăreanu, Carnegie Mellon University</li>
-  <li>Anka Reuel, Stanford University (Harvard Kennedy School and Harvard SEAS from January 2027)</li>
-</ul>
-<h3>Steering Committee</h3>
-<ul>
-  <li>Amit Sheth, University of South Carolina and IAIRO</li>
-  <li>Francesca Rossi, IBM Research</li>
-  <li>Craig S. Greenberg, NIST</li>
-  <li>José Hernández-Orallo, University of Cambridge</li>
-</ul>
+<!-- ================= METHOD ================= -->
+<section id="method">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">02 · How the audit works</span>
+      <div>
+        <h2>Start from the setting, not the score</h2>
+        <p>Mixed teams of six to eight audit shared cases. Each team works through the same four steps, so audits can be compared across teams and reused afterwards.</p>
+      </div>
+    </div>
 
-<h2 id="contact">Contact</h2>
-<p>Questions can be sent to Vedant Khandelwal at <a href="mailto:vedantk@ibm.com">vedantk@ibm.com</a>.</p>
+    <ol class="steps" style="list-style:none;margin:0;padding:0">
+      <li class="step">
+        <div class="num"><b>01</b><i></i></div>
+        <h3>Read the operational setting</h3>
+        <p>Teams receive a description of the workflow, the people in it, and the proposed use of the agent. They do not see the benchmark yet.</p>
+      </li>
+      <li class="step">
+        <div class="num"><b>02</b><i></i></div>
+        <h3>Derive what must hold</h3>
+        <p>Write the deployment criteria: reliability, cost, safety, correction effort. Separate serious failures from tolerable ones.</p>
+      </li>
+      <li class="step">
+        <div class="num"><b>03</b><i></i></div>
+        <h3>Check the evidence</h3>
+        <p>Compare the criteria with benchmark scores and recorded agent runs. Mark which criteria the evidence supports and where the scorer may be wrong.</p>
+      </li>
+      <li class="step">
+        <div class="num"><b>04</b><i></i></div>
+        <h3>Name the gaps</h3>
+        <p>List the serious failures the evidence misses and what a supervised pilot must still establish before use is authorized.</p>
+      </li>
+    </ol>
+
+    <div class="outputs">
+      <div class="out"><div class="label">Output</div><p><strong>Reviewed case audits</strong>, cross-reviewed by other teams on Day 2 and released after the Bridge.</p></div>
+      <div class="out"><div class="label">Output</div><p><strong>A draft reporting protocol</strong> that builds on <a href="https://prep-eval.github.io/prep-eval/">PREP-Eval</a> and maps to the Agentic Benchmark Checklist, BetterBench, and Evaluation Cards.</p></div>
+      <div class="out"><div class="label">No setup</div><p><strong>Agent runs are recorded in advance.</strong> You will not need compute, code, or a background in measurement.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TOPICS ================= -->
+<section id="topics">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">03 · Topics</span>
+      <div>
+        <h2>What we will examine</h2>
+        <p>Talks, posters, and use cases on any of the following are welcome.</p>
+      </div>
+    </div>
+    <ul class="topics">
+      <li><span>T1</span><div><strong>Validity</strong>Whether benchmarks and scorers measure what they claim, including data contamination</div></li>
+      <li><span>T2</span><div><strong>Stability</strong>Whether results hold across runs and tasks</div></li>
+      <li><span>T3</span><div><strong>Coverage</strong>Deployment needs such as cost, safety, and correction effort</div></li>
+      <li><span>T4</span><div><strong>Consequence</strong>Separating serious failures from tolerable ones</div></li>
+      <li><span>T5</span><div><strong>Human–agent work</strong>Agents working alongside people</div></li>
+      <li><span>T6</span><div><strong>Pilots</strong>What supervised pilots must establish</div></li>
+      <li><span>T7</span><div><strong>Case studies</strong>Industrial maintenance, software engineering, and agent security</div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= CASES ================= -->
+<section id="cases">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">04 · Cases</span>
+      <div>
+        <h2>Two shared cases, one optional third</h2>
+        <p>Every team audits the two shared cases. A third case on agent security is planned as an optional track and depends on participant interest.</p>
+      </div>
+    </div>
+
+    <div class="cases">
+      <article class="case">
+        <div class="case-tab"><span class="label">Case 1</span><span class="day">Day 1</span></div>
+        <div class="case-body">
+          <h3>Industrial asset maintenance</h3>
+          <dl>
+            <div><dt>Setting</dt><dd>An agent system supporting maintenance and reliability work on industrial assets: reading sensor data, diagnosing failure modes, and drafting work orders.</dd></div>
+            <div><dt>Evidence</dt><dd>Recorded runs of a configured agent in <a href="https://arxiv.org/abs/2506.03828">AssetOpsBench</a>'s simulated maintenance environment.</dd></div>
+            <div><dt>The audit asks</dt><dd>Does a successful score support the operational claim? Where would an operator need to check, correct, or stop the system?</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-tab"><span class="label">Case 2</span><span class="day">Day 2</span></div>
+        <div class="case-body">
+          <h3>Software engineering</h3>
+          <dl>
+            <div><dt>Setting</dt><dd>Experienced developers working with AI assistance on their own open-source repositories.</dd></div>
+            <div><dt>Evidence</dt><dd>METR's <a href="https://arxiv.org/abs/2507.09089">developer-productivity study</a> and its task-level data, paired with a configured agent on <a href="https://www.swebench.com/">SWE-bench Verified</a>.</dd></div>
+            <div><dt>The audit asks</dt><dd>What does self-reported completion time capture? How does a small sample of developers affect uncertainty? What evidence would support extending the findings?</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="case optional">
+        <div class="case-tab"><span class="label">Case 3</span><span class="tag-opt">Optional · tentative</span></div>
+        <div class="case-body">
+          <h3>Security of coding and tool-using agents</h3>
+          <dl>
+            <div><dt>Setting</dt><dd>A coding or IT-operations agent with access to repositories, tickets, and email. It reads untrusted content and can take actions with real consequences.</dd></div>
+            <div><dt>Candidate evidence</dt><dd>Recorded runs from agent-security benchmarks such as <a href="https://github.com/ServiceNow/DoomArena">DoomArena</a> and <a href="https://arxiv.org/abs/2406.13352">AgentDojo</a>.</dd></div>
+            <div><dt>The audit asks</dt><dd>Does a low attack-success rate justify granting write access? Which failures are serious, such as leaking secrets, running destructive commands, or merging vulnerable code? Which are tolerable, such as refusing a benign task?</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+
+    <p class="note">
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7v4.2M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <span>No case requires production access or private traces. Case packets, each with the operational setting and an audit template, will be published before the event along with a worked example on τ²-bench.</span>
+    </p>
+  </div>
+</section>
+
+<!-- ================= FORMAT ================= -->
+<section id="format">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">05 · Format</span>
+      <div>
+        <h2>Two days, in person</h2>
+        <p>Day 1 builds a shared vocabulary and runs the first audit. Day 2 opens the floor to submitted work, runs the second audit, and has teams test each other's conclusions.</p>
+      </div>
+    </div>
+
+    <div class="days">
+      <article class="day-card">
+        <header><h3>Day 1</h3><span class="label">Tue · Feb 16</span></header>
+        <p class="theme">Learn each other's methods and audit the maintenance case</p>
+        <ul class="blocks">
+          <li><span class="when">Morning</span><div><b>Reciprocal tutorials</b><span>Practitioners explain how deployment decisions get made. Evaluation researchers and agent developers explain how scores are produced.</span></div></li>
+          <li><span class="when">Afternoon</span><div><b>Case 1: Industrial maintenance</b><span>Teams derive criteria from the operational setting, then audit the evidence from AssetOpsBench.</span></div></li>
+        </ul>
+      </article>
+      <article class="day-card">
+        <header><h3>Day 2</h3><span class="label">Wed · Feb 17</span></header>
+        <p class="theme">Hear from participants, audit software engineering, and review</p>
+        <ul class="blocks">
+          <li><span class="when">Morning</span><div><b>Lightning talks and posters</b><span>Short talks from accepted papers, followed by a poster session.</span></div></li>
+          <li><span class="when">Midday</span><div><b>Case 2: Software engineering</b><span>Teams audit METR's developer-productivity study and SWE-bench Verified. Case 3 runs in parallel if confirmed.</span></div></li>
+          <li><span class="when">Afternoon</span><div><b>Cross-review</b><span>Teams review each other's audits. The reviewed audits feed the draft reporting protocol.</span></div></li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="strip">
+      <div><strong>Teams of 6–8</strong>Each team mixes evaluators and practitioners</div>
+      <div><strong>No compute or coding</strong>Agent runs are recorded in advance</div>
+      <div><strong>100–150 participants</strong>No measurement background assumed</div>
+    </div>
+    <p class="note" style="margin-top:14px"><span>A detailed schedule with times will be posted closer to the event.</span></p>
+  </div>
+</section>
+
+<!-- ================= PARTICIPATE ================= -->
+<section id="participate">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">06 · Call for participation</span>
+      <div>
+        <h2>Who should come, and how to take part</h2>
+        <p>The Bridge is open to all AAAI-27 registrants. Those who submit are placed in audit teams first.</p>
+      </div>
+    </div>
+
+    <div class="audience">
+      <div class="aud">
+        <h3>From evaluation</h3>
+        <ul>
+          <li>Evaluation researchers</li>
+          <li>Benchmark builders</li>
+          <li>Agent developers</li>
+        </ul>
+      </div>
+      <div class="aud">
+        <h3>From deployment</h3>
+        <ul>
+          <li>Maintenance, reliability, and software engineers</li>
+          <li>Plant operators</li>
+          <li>Applied AI engineers</li>
+        </ul>
+      </div>
+      <div class="aud">
+        <h3>From assurance, and students</h3>
+        <ul>
+          <li>Safety assurance researchers</li>
+          <li>Human factors researchers</li>
+          <li>Students at any level</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="paths">
+      <article class="path">
+        <span class="label">Option A</span>
+        <h3>Statement of interest</h3>
+        <p class="gets">Gets you: a place in an audit team</p>
+        <ul>
+          <li>One page</li>
+          <li>Your background, your domain, and your interest in the Bridge</li>
+        </ul>
+        <div class="addon"><b>Practitioners:</b> you can add a use case of up to two pages in the same PDF. Describe a workflow, a decision about using an agent in it, and which failures would be serious or tolerable. Use public information only. Use cases help us form teams.</div>
+      </article>
+      <article class="path">
+        <span class="label">Option B</span>
+        <h3>Paper</h3>
+        <p class="gets">Gets you: a lightning talk and a poster</p>
+        <ul>
+          <li>Short paper (2–4 pages) or full paper (6–8 pages)</li>
+          <li>AAAI-27 format</li>
+          <li>Non-archival. Already-published work is welcome.</li>
+        </ul>
+        <div class="addon">Papers on any of the <a href="#topics">topics</a> above are in scope, including case studies from deployment.</div>
+      </article>
+      <article class="path">
+        <span class="label">Option C</span>
+        <h3>Can't travel?</h3>
+        <p class="gets">Gets you: a remote review role</p>
+        <ul>
+          <li>Submit a statement of interest</li>
+          <li>Review the draft audits online after the event</li>
+        </ul>
+        <div class="addon">Remote reviews, especially from practitioners, feed directly into the released audits.</div>
+      </article>
+    </div>
+
+    <div class="submitbar">
+      <p><strong>Due December 1, 2026 (AoE)</strong><br>Notifications December 13, 2026 · Submissions through OpenReview</p>
+      <a class="btn btn-primary" href="https://openreview.net/group?id=AAAI.org/2027/Bridge/Bench2Evidence" id="openreview">Submit on OpenReview ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DATES ================= -->
+<section id="dates">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">07 · Important dates</span>
+      <div><h2>Timeline</h2><p>All deadlines are Anywhere on Earth (AoE).</p></div>
+    </div>
+    <ol class="timeline">
+      <li class="key" data-date="2026-12-02T12:00:00Z"><time datetime="2026-12-01">Dec 1, 2026</time><span class="dot"></span><div class="what">Submissions due<small>Statements of interest, use cases, and papers</small></div></li>
+      <li data-date="2026-12-13T23:59:00Z"><time datetime="2026-12-13">Dec 13, 2026</time><span class="dot"></span><div class="what">Notifications<small>Audit team placements and talk/poster decisions</small></div></li>
+      <li data-date="2027-01-06T23:59:00Z"><time datetime="2027-01-06">Jan 6, 2027</time><span class="dot"></span><div class="what">Case packets released<small>Operational settings, audit templates, and the τ²-bench worked example</small></div></li>
+      <li class="key" data-date="2027-02-17T23:59:00Z"><time datetime="2027-02-16">Feb 16–17, 2027</time><span class="dot"></span><div class="what">Bridge at AAAI-27<small>Palais des Congrès, Montréal</small></div></li>
+      <li data-date="2027-03-19T23:59:00Z"><time datetime="2027-03-19">Mar 19, 2027</time><span class="dot"></span><div class="what">Reviewed audits and draft reporting protocol released</div></li>
+      <li data-date="2027-05-31T23:59:00Z"><time datetime="2027-05">May 2027</time><span class="dot"></span><div class="what">Follow-up meeting</div></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= ORGANIZERS ================= -->
+<section id="organizers">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">08 · Organizers</span>
+      <div><h2>Bridge Committee</h2><p>Organizers from industry labs and universities, spanning evaluation science and deployment practice.</p></div>
+    </div>
+
+    <div class="people">
+      <div class="person"><img src="photo/people/vedant.jpg" alt="Vedant Khandelwal" loading="lazy" width="400" height="400"><h3>Vedant Khandelwal</h3><p class="aff">IBM Research</p><a href="https://khvedant02.github.io/">Website ↗</a></div>
+      <div class="person"><img src="photo/people/dhaval.jpg" alt="Dhaval Patel" loading="lazy" width="400" height="400"><h3>Dhaval Patel</h3><p class="aff">IBM Research</p><a href="https://scholar.google.com/citations?user=c06_VJAAAAAJ">Google Scholar ↗</a></div>
+      <div class="person"><img src="photo/people/alexandre.jpg" alt="Alexandre Drouin" loading="lazy" width="400" height="400"><h3>Alexandre Drouin</h3><p class="aff">Cohere and Mila</p><a href="https://www.alexdrouin.com/">Website ↗</a></div>
+      <div class="person"><img src="photo/people/lior.jpg" alt="Lior Horesh" loading="lazy" width="400" height="400"><h3>Lior Horesh</h3><p class="aff">IBM Research</p><a href="https://research.ibm.com/people/lior-horesh">Website ↗</a></div>
+      <div class="person"><img src="photo/people/jason.jpg" alt="Jason Stanley" loading="lazy" width="400" height="400"><h3>Jason Stanley</h3><p class="aff">ServiceNow</p><a href="https://www.servicenow.com/research/author/jason-stanley.html">Website ↗</a></div>
+      <div class="person"><img src="photo/people/lora.jpg" alt="Lora Aroyo" loading="lazy" width="400" height="400"><h3>Lora Aroyo</h3><p class="aff">Google DeepMind</p><a href="https://lora-aroyo.org/">Website ↗</a></div>
+      <div class="person"><img src="photo/people/yining.jpg" alt="Yining Hua" loading="lazy" width="400" height="400"><h3>Yining Hua</h3><p class="aff">Harvard University and EvalScience Inc.</p><a href="https://ningkko.github.io/">Website ↗</a></div>
+      <div class="person"><img src="photo/people/corina.jpg" alt="Corina Păsăreanu" loading="lazy" width="400" height="400"><h3>Corina Păsăreanu</h3><p class="aff">Carnegie Mellon University</p><a href="https://www.andrew.cmu.edu/user/pcorina/">Website ↗</a></div>
+      <div class="person"><img src="photo/people/anka.jpg" alt="Anka Reuel" loading="lazy" width="400" height="400"><h3>Anka Reuel</h3><p class="aff">Stanford University</p><a href="https://ankareuel.com/">Website ↗</a></div>
+    </div>
+
+    <div class="people-sub"><h3>Steering Committee</h3></div>
+    <div class="people steer">
+      <div class="person"><img src="photo/people/amit.jpg" alt="Amit Sheth" loading="lazy" width="400" height="400"><h3>Amit Sheth</h3><p class="aff">University of South Carolina and IAIRO</p><a href="https://amit.aiisc.ai/">Website ↗</a></div>
+      <div class="person"><img src="photo/people/rossi.jpg" alt="Francesca Rossi" loading="lazy" width="400" height="400"><h3>Francesca Rossi</h3><p class="aff">IBM Research</p><a href="https://research.ibm.com/people/francesca-rossi">Website ↗</a></div>
+      <div class="person"><img src="photo/people/craig.jpg" alt="Craig Greenberg" loading="lazy" width="400" height="400"><h3>Craig Greenberg</h3><p class="aff">NIST</p><a href="https://www.nist.gov/people/craig-greenberg">Website ↗</a></div>
+      <div class="person"><img src="photo/people/jose.jpg" alt="José Hernández-Orallo" loading="lazy" width="400" height="400"><h3>José Hernández-Orallo</h3><p class="aff">University of Cambridge</p><a href="https://josephorallo.webs.upv.es/">Website ↗</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" style="border-bottom:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="label">09 · Contact</span>
+      <div><h2>Questions</h2><p>For questions about submissions, cases, or attending, contact either of us.</p></div>
+    </div>
+    <div class="contact">
+      <div><b>Vedant Khandelwal</b><small>IBM Research</small><a href="mailto:vedantk@ibm.com">vedantk@ibm.com</a></div>
+      <div><b>Dhaval Patel</b><small>IBM Research</small><a href="mailto:pateldha@us.ibm.com">pateldha@us.ibm.com</a></div>
+    </div>
+  </div>
+</section>
+
+</main>
 
 <footer>
-  Part of the <a href="https://aaai.org/conference/aaai/aaai-27/">AAAI-27</a> Bridge Program.
+  <div class="wrap">
+    <span>Part of the <a href="https://aaai.org/conference/aaai/aaai-27/">AAAI-27</a> Bridge Program · Montréal, February 16–17, 2027</span>
+    <span>bench-to-evidence.github.io</span>
+  </div>
 </footer>
 
-</div>
+<script>
+(function(){
+  var now = Date.now();
+  // Countdown to the submission deadline (Dec 1, 2026 AoE = Dec 2, 12:00 UTC)
+  var due = Date.parse("2026-12-02T12:00:00Z");
+  var el = document.getElementById("countdown");
+  if (el) {
+    var days = Math.ceil((due - now) / 86400000);
+    if (days > 1) el.textContent = "AoE · " + days + " days left";
+    else if (days === 1) el.textContent = "AoE · last day";
+    else el.textContent = "Submissions closed";
+  }
+  // Mark past and next milestones on the timeline
+  var items = document.querySelectorAll(".timeline li[data-date]");
+  var nextMarked = false;
+  for (var i = 0; i < items.length; i++) {
+    var t = Date.parse(items[i].getAttribute("data-date"));
+    if (t < now) items[i].classList.add("past");
+    else if (!nextMarked) { items[i].classList.add("next"); nextMarked = true; }
+  }
+})();
+</script>
 </body>
 </html>
