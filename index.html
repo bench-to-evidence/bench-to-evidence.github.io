@@ -81,38 +81,25 @@ p{margin:0 0 14px}
 
 /* ---------- hero ---------- */
 .hero{padding:64px 0 56px;border-bottom:1px solid var(--line)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:start}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
 .eyebrow{display:flex;flex-wrap:wrap;gap:8px 14px;margin-bottom:22px}
 .eyebrow span{font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);padding:7px 10px;border:1px solid var(--line-2);border-radius:999px;background:var(--surface)}
 .hero h1{font-size:clamp(36px,5vw,58px);margin-bottom:12px}
 .hero .sub{font:500 clamp(18px,2vw,21px)/1.4 var(--sans);color:var(--ink-2);margin-bottom:26px}
 .hero .lead{font:500 19px/1.5 var(--serif);border-left:3px solid var(--accent);padding:2px 0 2px 16px;margin-bottom:28px;color:var(--ink)}
-.cta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);overflow:hidden}
-.fact{padding:14px 16px;border-right:1px solid var(--line)}
-.fact:last-child{border-right:0}
-.fact b{display:block;font:600 16px/1.3 var(--sans);margin-top:4px}
-.fact small{color:var(--ink-3);font-size:13px}
+.cta{display:flex;flex-wrap:wrap;gap:12px}
 
-/* audit sheet */
-.sheet{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 1px 0 var(--line),0 18px 40px -24px rgba(20,24,32,.35);overflow:hidden}
-.sheet-head{display:flex;justify-content:space-between;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--sunk)}
-.sheet-claim{padding:16px 18px;border-bottom:1px dashed var(--line-2)}
-.sheet-claim p{margin:6px 0 0;font:500 16px/1.45 var(--serif)}
-.sheet table{width:100%;border-collapse:collapse;font-size:14px}
-.sheet th{font:500 11px/1.3 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);text-align:left;padding:10px 18px 8px;border-bottom:1px solid var(--line)}
-.sheet td{padding:11px 18px;border-bottom:1px solid var(--line);vertical-align:top}
-.sheet td:first-child{width:52%}
-.sheet td .ev{display:block;color:var(--ink-3);font-size:12.5px;margin-top:2px}
-.chip{display:inline-flex;align-items:center;gap:6px;font:500 12px/1 var(--sans);padding:5px 9px;border-radius:999px;white-space:nowrap}
-.chip::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-.chip.ok{color:var(--ok);background:var(--ok-soft)}
-.chip.part{color:var(--part);background:var(--part-soft)}
-.chip.miss{color:var(--miss);background:var(--miss-soft)}
-.chip.pilot{color:var(--pilot);background:var(--pilot-soft)}
-.sheet-foot{padding:14px 18px;font-size:14px;color:var(--ink-2);display:flex;gap:10px;align-items:flex-start}
-.sheet-foot strong{color:var(--ink)}
-.sheet-caption{font-size:13px;color:var(--ink-3);margin-top:12px}
+/* key dates panel */
+.glance{background:var(--surface);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 1px 0 var(--line),0 18px 40px -24px rgba(20,24,32,.35);overflow:hidden}
+.glance-head{padding:14px 20px;border-bottom:1px solid var(--line);background:var(--sunk)}
+.glance dl{margin:0}
+.glance .row{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:15px 20px;border-bottom:1px solid var(--line);align-items:baseline}
+.glance dt{font:500 12px/1.4 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.glance dd{margin:0;font:600 17px/1.35 var(--sans)}
+.glance dd small{display:block;font-weight:400;font-size:14px;color:var(--ink-3);margin-top:2px}
+.glance .row.due dd{color:var(--accent)}
+.glance-foot{padding:16px 20px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;justify-content:space-between}
+.glance-foot p{margin:0;font-size:14px;color:var(--ink-2)}
 
 /* ---------- sections ---------- */
 section{padding:80px 0;border-bottom:1px solid var(--line)}
@@ -170,16 +157,9 @@ section{padding:80px 0;border-bottom:1px solid var(--line)}
 .note svg{flex:none;margin-top:3px}
 
 /* format */
-.days{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.day-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px}
-.day-card header{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px}
-.day-card h3{font-size:24px}
-.day-card .theme{color:var(--ink-3);font-size:14px;margin-bottom:16px}
-.blocks{list-style:none;margin:0;padding:0;display:grid;gap:10px}
-.blocks li{display:grid;grid-template-columns:96px 1fr;gap:14px;padding:12px 0;border-top:1px solid var(--line)}
-.blocks .when{font:500 12px/1.6 var(--mono);color:var(--ink-3);text-transform:uppercase;letter-spacing:.05em}
-.blocks b{display:block;font-weight:600;margin-bottom:2px}
-.blocks span{color:var(--ink-2);font-size:15px}
+.tbd{border:1.5px dashed var(--line-2);border-radius:14px;padding:22px 24px;display:flex;flex-direction:column;gap:6px}
+.tbd p{margin:0;font-size:17px;color:var(--ink-2)}
+.tbd strong{color:var(--ink)}
 .strip{margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
 .strip div{padding:16px 18px;border-right:1px solid var(--line);font-size:15px;color:var(--ink-2)}
 .strip div:last-child{border-right:0}
@@ -215,18 +195,43 @@ section{padding:80px 0;border-bottom:1px solid var(--line)}
 .timeline li.key .dot{border-color:var(--accent);background:var(--accent)}
 .timeline li.key .what{font-weight:600}
 .timeline li.past{opacity:.5}
+.timeline li.tbd-date time{color:var(--ink-3)}
+.timeline li.tbd-date .dot{border-style:dashed}
 .timeline li.next .what::after{content:"Next";margin-left:10px;font:500 11px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 7px;border-radius:6px;background:var(--accent-soft);color:var(--accent);vertical-align:2px}
 
 /* people */
-.people{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:28px 22px}
-.person img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:12px;background:var(--sunk);margin-bottom:12px;filter:saturate(.92)}
-.person h3{font:600 16px/1.3 var(--sans);margin-bottom:3px}
-.person .aff{font-size:14px;color:var(--ink-2);line-height:1.4;margin-bottom:6px}
-.person a{font:500 13px var(--sans);text-decoration:none}
-.person a:hover{text-decoration:underline}
+.people{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+.person{width:206px;position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 18px 0;background:var(--surface);border:1px solid var(--line);border-radius:14px;color:var(--ink);text-decoration:none;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.person .ph{width:116px;height:116px;border-radius:50%;overflow:hidden;margin-bottom:14px;box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--line-2);transition:box-shadow .25s ease;flex:none}
+.person .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.person h3{font:600 16.5px/1.3 var(--sans);margin-bottom:4px}
+.person .aff{font-size:13.5px;color:var(--ink-2);line-height:1.4;margin:0 0 12px}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:16px}
+.logo{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 9px;border-radius:7px;background:#fff;border:1px solid #e4e1d8}
+.logo img{height:16px;width:auto;max-width:100px;object-fit:contain}
+.logo img[src$="ibm.svg"]{height:17px}
+.logo img[src$="cohere.png"]{height:14px}
+.logo img[src$="mila.svg"]{height:22px}
+.logo img[src$="servicenow.svg"]{height:11px}
+.logo img[src$="deepmind.svg"]{height:11px}
+.logo img[src$="harvard.svg"]{height:19px}
+.logo img[src$="cmu.svg"]{height:13px;max-width:110px}
+.logo img[src$="stanford.svg"]{height:14px}
+.logo img[src$="southcarolina.svg"]{height:17px}
+.logo img[src$="iairo.png"]{height:20px}
+.logo img[src$="nist.svg"]{height:14px}
+.logo img[src$="cambridge.svg"]{height:22px}
+.logo.dark{background:#16181d;border-color:#16181d}
+.logo.text{font:600 12px/1 var(--sans);color:#1d2a44;letter-spacing:.01em}
+.person .go{margin-top:auto;align-self:stretch;display:flex;justify-content:center;align-items:center;gap:6px;padding:11px 0;margin-left:-18px;margin-right:-18px;border-top:1px solid var(--line);font:500 13px var(--sans);color:var(--ink-3);transition:color .25s ease,background .25s ease}
+.person .go svg{transition:transform .25s ease}
+.person:hover,.person:focus-visible{transform:translateY(-4px);border-color:var(--accent);box-shadow:0 18px 36px -22px rgba(20,24,32,.45)}
+.person:hover .ph,.person:focus-visible .ph{box-shadow:0 0 0 4px var(--surface),0 0 0 6px var(--accent)}
+.person:hover .ph img,.person:focus-visible .ph img{transform:scale(1.07)}
+.person:hover .go,.person:focus-visible .go{color:var(--accent-ink);background:var(--accent)}
+.person:hover .go svg,.person:focus-visible .go svg{transform:translate(2px,-2px)}
 .people-sub{margin:56px 0 22px;display:flex;align-items:baseline;gap:14px}
 .people-sub h3{font-size:24px}
-.people.steer{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
 
 /* contact + footer */
 .contact{display:grid;grid-template-columns:repeat(2,minmax(0,320px));gap:18px}
@@ -244,7 +249,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   .cases,.paths,.audience,.outputs{grid-template-columns:1fr}
   .steps{grid-template-columns:1fr 1fr;row-gap:28px}
   .step:nth-child(2) .num i{display:none}
-  .days{grid-template-columns:1fr}
   .topnav{display:none}
   .topbar .btn{margin-left:auto}
 }
@@ -252,27 +256,30 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   .wrap{padding:0 16px}
   section{padding:56px 0}
   .hero{padding:40px 0 44px}
-  .facts,.strip{grid-template-columns:1fr}
-  .fact,.strip div{border-right:0;border-bottom:1px solid var(--line)}
-  .fact:last-child,.strip div:last-child{border-bottom:0}
+  .strip{grid-template-columns:1fr}
+  .strip div{border-right:0;border-bottom:1px solid var(--line)}
+  .strip div:last-child{border-bottom:0}
+  .glance .row{grid-template-columns:1fr;gap:4px}
   .bridge{grid-template-columns:1fr}
   .span{flex-direction:row;padding:12px 0}
   .span svg{width:44px;height:44px;transform:rotate(90deg)}
   .steps{grid-template-columns:1fr}
   .step .num i{display:none}
-  .sheet td,.sheet th{padding-left:14px;padding-right:14px}
-  .sheet td:first-child{width:auto}
   .timeline li{grid-template-columns:22px 1fr;gap:0 12px}
   .timeline time{grid-column:2;text-align:left;font-size:13px}
   .timeline .dot{grid-row:1/span 2;grid-column:1}
   .timeline .what{grid-column:2}
   .timeline li::after{left:10px}
-  .people{grid-template-columns:repeat(2,1fr);gap:22px 14px}
+  .people{gap:12px}
+  .person{width:calc(50% - 6px)}
+  .person{padding:18px 10px 0}
+  .person .go{margin-left:-10px;margin-right:-10px}
+  .person .ph{width:88px;height:88px}
+  .person h3{font-size:15px}
   .contact{grid-template-columns:1fr}
-  .blocks li{grid-template-columns:1fr;gap:4px}
   .brand span{display:none}
 }
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.person,.person *{transition:none!important}.person:hover,.person:focus-visible{transform:none}.person:hover .ph img,.person:focus-visible .ph img{transform:none}}
 </style>
 </head>
 <body>
@@ -314,40 +321,21 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
         <a class="btn btn-primary" href="#participate">How to take part</a>
         <a class="btn btn-ghost" href="#method">How the audit works</a>
       </div>
-      <div class="facts">
-        <div class="fact"><span class="label">Submissions due</span><b>Dec 1, 2026</b><small id="countdown">Anywhere on Earth</small></div>
-        <div class="fact"><span class="label">Notifications</span><b>Dec 13, 2026</b><small>Audit teams formed</small></div>
-        <div class="fact"><span class="label">Where</span><b>Palais des Congrès</b><small>Montréal, Canada</small></div>
-      </div>
     </div>
 
-    <figure style="margin:0">
-      <div class="sheet" role="group" aria-label="Illustrative audit sheet">
-        <div class="sheet-head">
-          <span class="label">Audit sheet · Case 1</span>
-          <span class="label">Illustrative</span>
-        </div>
-        <div class="sheet-claim">
-          <span class="label">Proposed use</span>
-          <p>An agent triages sensor alerts and drafts work orders for chillers at our plant.</p>
-        </div>
-        <table>
-          <thead><tr><th scope="col">What must hold</th><th scope="col">What the evidence says</th></tr></thead>
-          <tbody>
-            <tr><td>Identifies the right failure mode from an alert<span class="ev">Benchmark task success</span></td><td><span class="chip part">Partly supported</span></td></tr>
-            <tr><td>Results hold across repeated runs<span class="ev">Scores from repeated recorded runs</span></td><td><span class="chip ok">Supported</span></td></tr>
-            <tr><td>Never closes a work order without technician sign-off<span class="ev">Not scored</span></td><td><span class="chip miss">Missed</span></td></tr>
-            <tr><td>Cost per resolved alert stays within budget<span class="ev">Not reported</span></td><td><span class="chip miss">Missed</span></td></tr>
-            <tr><td>Saves operators time once corrections are counted<span class="ev">Not measured</span></td><td><span class="chip pilot">Pilot must show</span></td></tr>
-          </tbody>
-        </table>
-        <div class="sheet-foot">
-          <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M9 1.5 16.5 15h-15z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M9 7v3.6M9 12.4v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          <span><strong>Verdict:</strong> the score supports a supervised pilot, not deployment. Two serious failures are unmeasured.</span>
-        </div>
+    <aside class="glance" aria-label="Key dates">
+      <div class="glance-head"><span class="label">Key dates</span></div>
+      <dl>
+        <div class="row due"><dt>Submissions due</dt><dd>December 1, 2026<small id="countdown">Anywhere on Earth</small></dd></div>
+        <div class="row"><dt>Notifications</dt><dd>December 13, 2026</dd></div>
+        <div class="row"><dt>Bridge</dt><dd>February 16–17, 2027<small>Two days, in person</small></dd></div>
+        <div class="row"><dt>Where</dt><dd>Montréal, Canada<small>Palais des Congrès · AAAI-27</small></dd></div>
+      </dl>
+      <div class="glance-foot">
+        <p>Open to all AAAI-27 registrants</p>
+        <a class="btn btn-primary" href="https://openreview.net/group?id=AAAI.org/2027/Bridge/Bench2Evidence" target="_blank" rel="noopener">Submit on OpenReview ↗</a>
       </div>
-      <figcaption class="sheet-caption">An example of what audit teams produce: criteria come from the operational setting first, then each one is checked against the evidence.</figcaption>
-    </figure>
+    </aside>
   </div>
 </div>
 
@@ -358,7 +346,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <span class="label">01 · Why this Bridge</span>
       <div>
         <h2>Answering takes two communities</h2>
-        <p>A headline score records whether an agent met its objective. It does not say how, whether the tasks resemble your setting, or whether the agent leaked data, broke policy, took an unacceptable action, or needed so much correction that it saved no one any time. The people who can close that gap rarely work together.</p>
+        <p>A headline score records whether an agent met its objective. It does not say how, whether the tasks resemble your setting, or whether the agent leaked data, broke policy, took an unacceptable action, or needed so much correction that it saved no one any time.</p>
       </div>
     </div>
 
@@ -400,7 +388,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <span class="label">02 · How the audit works</span>
       <div>
         <h2>Start from the setting, not the score</h2>
-        <p>Mixed teams of six to eight audit shared cases. Each team works through the same four steps, so audits can be compared across teams and reused afterwards.</p>
+        <p>Mixed teams of six to eight audit shared cases in four steps.</p>
       </div>
     </div>
 
@@ -441,8 +429,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="sec-head">
       <span class="label">03 · Topics</span>
       <div>
-        <h2>What we will examine</h2>
-        <p>Talks, posters, and use cases on any of the following are welcome.</p>
+        <h2>Topics</h2>
+        <p>We welcome talks, posters, and use cases from both evaluation and deployment. Topics include, but are not limited to:</p>
       </div>
     </div>
     <ul class="topics">
@@ -452,7 +440,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <li><span>T4</span><div><strong>Consequence</strong>Separating serious failures from tolerable ones</div></li>
       <li><span>T5</span><div><strong>Human–agent work</strong>Agents working alongside people</div></li>
       <li><span>T6</span><div><strong>Pilots</strong>What supervised pilots must establish</div></li>
-      <li><span>T7</span><div><strong>Case studies</strong>Industrial maintenance, software engineering, and agent security</div></li>
+      <li><span>T7</span><div><strong>Case studies</strong>From any domain, such as industrial maintenance and software engineering</div></li>
+      <li><span>T8</span><div><strong>And more</strong>Any work that connects evaluation evidence to deployment decisions</div></li>
     </ul>
   </div>
 </section>
@@ -508,7 +497,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
     <p class="note">
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M8 7v4.2M8 4.6v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <span>No case requires production access or private traces. Case packets, each with the operational setting and an audit template, will be published before the event along with a worked example on τ²-bench.</span>
+      <span>No case requires production access or private traces. Case packets, each with the operational setting and an audit template, will be shared before the event.</span>
     </p>
   </div>
 </section>
@@ -519,29 +508,14 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     <div class="sec-head">
       <span class="label">05 · Format</span>
       <div>
-        <h2>Two days, in person</h2>
-        <p>Day 1 builds a shared vocabulary and runs the first audit. Day 2 opens the floor to submitted work, runs the second audit, and has teams test each other's conclusions.</p>
+        <h2>Format and schedule</h2>
+        <p>Two days, in person, February 16–17, 2027, at AAAI-27 in Montréal.</p>
       </div>
     </div>
 
-    <div class="days">
-      <article class="day-card">
-        <header><h3>Day 1</h3><span class="label">Tue · Feb 16</span></header>
-        <p class="theme">Learn each other's methods and audit the maintenance case</p>
-        <ul class="blocks">
-          <li><span class="when">Morning</span><div><b>Reciprocal tutorials</b><span>Practitioners explain how deployment decisions get made. Evaluation researchers and agent developers explain how scores are produced.</span></div></li>
-          <li><span class="when">Afternoon</span><div><b>Case 1: Industrial maintenance</b><span>Teams derive criteria from the operational setting, then audit the evidence from AssetOpsBench.</span></div></li>
-        </ul>
-      </article>
-      <article class="day-card">
-        <header><h3>Day 2</h3><span class="label">Wed · Feb 17</span></header>
-        <p class="theme">Hear from participants, audit software engineering, and review</p>
-        <ul class="blocks">
-          <li><span class="when">Morning</span><div><b>Lightning talks and posters</b><span>Short talks from accepted papers, followed by a poster session.</span></div></li>
-          <li><span class="when">Midday</span><div><b>Case 2: Software engineering</b><span>Teams audit METR's developer-productivity study and SWE-bench Verified. Case 3 runs in parallel if confirmed.</span></div></li>
-          <li><span class="when">Afternoon</span><div><b>Cross-review</b><span>Teams review each other's audits. The reviewed audits feed the draft reporting protocol.</span></div></li>
-        </ul>
-      </article>
+    <div class="tbd">
+      <span class="label">Detailed schedule</span>
+      <p><strong>TBD.</strong> The program for each day will be posted here once it is finalized.</p>
     </div>
 
     <div class="strip">
@@ -549,7 +523,6 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <div><strong>No compute or coding</strong>Agent runs are recorded in advance</div>
       <div><strong>100–150 participants</strong>No measurement background assumed</div>
     </div>
-    <p class="note" style="margin-top:14px"><span>A detailed schedule with times will be posted closer to the event.</span></p>
   </div>
 </section>
 
@@ -611,17 +584,16 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <li>AAAI-27 format</li>
           <li>Non-archival. Already-published work is welcome.</li>
         </ul>
-        <div class="addon">Papers on any of the <a href="#topics">topics</a> above are in scope, including case studies from deployment.</div>
+        <div class="addon">Papers on any of the <a href="#topics">topics</a> above, or related ones, are welcome.</div>
       </article>
       <article class="path">
         <span class="label">Option C</span>
         <h3>Can't travel?</h3>
-        <p class="gets">Gets you: a remote review role</p>
+        <p class="gets">Gets you: online review of the draft audits</p>
         <ul>
           <li>Submit a statement of interest</li>
           <li>Review the draft audits online after the event</li>
         </ul>
-        <div class="addon">Remote reviews, especially from practitioners, feed directly into the released audits.</div>
       </article>
     </div>
 
@@ -641,11 +613,9 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
     <ol class="timeline">
       <li class="key" data-date="2026-12-02T12:00:00Z"><time datetime="2026-12-01">Dec 1, 2026</time><span class="dot"></span><div class="what">Submissions due<small>Statements of interest, use cases, and papers</small></div></li>
-      <li data-date="2026-12-13T23:59:00Z"><time datetime="2026-12-13">Dec 13, 2026</time><span class="dot"></span><div class="what">Notifications<small>Audit team placements and talk/poster decisions</small></div></li>
-      <li data-date="2027-01-06T23:59:00Z"><time datetime="2027-01-06">Jan 6, 2027</time><span class="dot"></span><div class="what">Case packets released<small>Operational settings, audit templates, and the τ²-bench worked example</small></div></li>
+      <li data-date="2026-12-13T23:59:00Z"><time datetime="2026-12-13">Dec 13, 2026</time><span class="dot"></span><div class="what">Notifications</div></li>
+      <li class="tbd-date"><time>TBD</time><span class="dot"></span><div class="what">Case packets released<small>Operational settings and audit templates</small></div></li>
       <li class="key" data-date="2027-02-17T23:59:00Z"><time datetime="2027-02-16">Feb 16–17, 2027</time><span class="dot"></span><div class="what">Bridge at AAAI-27<small>Palais des Congrès, Montréal</small></div></li>
-      <li data-date="2027-03-19T23:59:00Z"><time datetime="2027-03-19">Mar 19, 2027</time><span class="dot"></span><div class="what">Reviewed audits and draft reporting protocol released</div></li>
-      <li data-date="2027-05-31T23:59:00Z"><time datetime="2027-05">May 2027</time><span class="dot"></span><div class="what">Follow-up meeting</div></li>
     </ol>
   </div>
 </section>
@@ -659,23 +629,101 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </div>
 
     <div class="people">
-      <div class="person"><img src="photo/people/vedant.jpg" alt="Vedant Khandelwal" loading="lazy" width="400" height="400"><h3>Vedant Khandelwal</h3><p class="aff">IBM Research</p><a href="https://khvedant02.github.io/">Website ↗</a></div>
-      <div class="person"><img src="photo/people/dhaval.jpg" alt="Dhaval Patel" loading="lazy" width="400" height="400"><h3>Dhaval Patel</h3><p class="aff">IBM Research</p><a href="https://scholar.google.com/citations?user=c06_VJAAAAAJ">Google Scholar ↗</a></div>
-      <div class="person"><img src="photo/people/alexandre.jpg" alt="Alexandre Drouin" loading="lazy" width="400" height="400"><h3>Alexandre Drouin</h3><p class="aff">Cohere and Mila</p><a href="https://www.alexdrouin.com/">Website ↗</a></div>
-      <div class="person"><img src="photo/people/lior.jpg" alt="Lior Horesh" loading="lazy" width="400" height="400"><h3>Lior Horesh</h3><p class="aff">IBM Research</p><a href="https://research.ibm.com/people/lior-horesh">Website ↗</a></div>
-      <div class="person"><img src="photo/people/jason.jpg" alt="Jason Stanley" loading="lazy" width="400" height="400"><h3>Jason Stanley</h3><p class="aff">ServiceNow</p><a href="https://www.servicenow.com/research/author/jason-stanley.html">Website ↗</a></div>
-      <div class="person"><img src="photo/people/lora.jpg" alt="Lora Aroyo" loading="lazy" width="400" height="400"><h3>Lora Aroyo</h3><p class="aff">Google DeepMind</p><a href="https://lora-aroyo.org/">Website ↗</a></div>
-      <div class="person"><img src="photo/people/yining.jpg" alt="Yining Hua" loading="lazy" width="400" height="400"><h3>Yining Hua</h3><p class="aff">Harvard University and EvalScience Inc.</p><a href="https://ningkko.github.io/">Website ↗</a></div>
-      <div class="person"><img src="photo/people/corina.jpg" alt="Corina Păsăreanu" loading="lazy" width="400" height="400"><h3>Corina Păsăreanu</h3><p class="aff">Carnegie Mellon University</p><a href="https://www.andrew.cmu.edu/user/pcorina/">Website ↗</a></div>
-      <div class="person"><img src="photo/people/anka.jpg" alt="Anka Reuel" loading="lazy" width="400" height="400"><h3>Anka Reuel</h3><p class="aff">Stanford University</p><a href="https://ankareuel.com/">Website ↗</a></div>
+      <a class="person" href="https://khvedant02.github.io/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/vedant.jpg" alt="Vedant Khandelwal" loading="lazy"></span>
+        <h3>Vedant Khandelwal</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://scholar.google.com/citations?user=c06_VJAAAAAJ" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/dhaval.jpg" alt="Dhaval Patel" loading="lazy"></span>
+        <h3>Dhaval Patel</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Google Scholar <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.alexdrouin.com/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/alexandre.jpg" alt="Alexandre Drouin" loading="lazy"></span>
+        <h3>Alexandre Drouin</h3>
+        <p class="aff">Cohere and Mila</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/cohere.png" alt="Cohere"></span><span class="logo"><img src="assets/logos/mila.svg" alt="Mila"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://research.ibm.com/people/lior-horesh" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/lior.jpg" alt="Lior Horesh" loading="lazy"></span>
+        <h3>Lior Horesh</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.servicenow.com/research/author/jason-stanley.html" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/jason.jpg" alt="Jason Stanley" loading="lazy"></span>
+        <h3>Jason Stanley</h3>
+        <p class="aff">ServiceNow</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/servicenow.svg" alt="ServiceNow"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://lora-aroyo.org/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/lora.jpg" alt="Lora Aroyo" loading="lazy"></span>
+        <h3>Lora Aroyo</h3>
+        <p class="aff">Google DeepMind</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/deepmind.svg" alt="Google DeepMind"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://ningkko.github.io/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/ning.jpg" alt="Yining Hua" loading="lazy"></span>
+        <h3>Yining Hua</h3>
+        <p class="aff">Harvard T.H. Chan School of Public Health and EvalScience Inc.</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/harvard.svg" alt="Harvard University"></span><span class="logo text">EvalScience</span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.andrew.cmu.edu/user/pcorina/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/corina.jpg" alt="Corina Păsăreanu" loading="lazy"></span>
+        <h3>Corina Păsăreanu</h3>
+        <p class="aff">Carnegie Mellon University</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/cmu.svg" alt="Carnegie Mellon University"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://ankareuel.com/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/anka.jpg" alt="Anka Reuel" loading="lazy"></span>
+        <h3>Anka Reuel</h3>
+        <p class="aff">Stanford University; Harvard Kennedy School and Harvard SEAS (from January 2027)</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/stanford.svg" alt="Stanford University"></span><span class="logo"><img src="assets/logos/harvard.svg" alt="Harvard University"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
     </div>
 
     <div class="people-sub"><h3>Steering Committee</h3></div>
-    <div class="people steer">
-      <div class="person"><img src="photo/people/amit.jpg" alt="Amit Sheth" loading="lazy" width="400" height="400"><h3>Amit Sheth</h3><p class="aff">University of South Carolina and IAIRO</p><a href="https://amit.aiisc.ai/">Website ↗</a></div>
-      <div class="person"><img src="photo/people/rossi.jpg" alt="Francesca Rossi" loading="lazy" width="400" height="400"><h3>Francesca Rossi</h3><p class="aff">IBM Research</p><a href="https://research.ibm.com/people/francesca-rossi">Website ↗</a></div>
-      <div class="person"><img src="photo/people/craig.jpg" alt="Craig Greenberg" loading="lazy" width="400" height="400"><h3>Craig Greenberg</h3><p class="aff">NIST</p><a href="https://www.nist.gov/people/craig-greenberg">Website ↗</a></div>
-      <div class="person"><img src="photo/people/jose.jpg" alt="José Hernández-Orallo" loading="lazy" width="400" height="400"><h3>José Hernández-Orallo</h3><p class="aff">University of Cambridge</p><a href="https://josephorallo.webs.upv.es/">Website ↗</a></div>
+    <div class="people">
+      <a class="person" href="https://amit.aiisc.ai/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/amit.jpg" alt="Amit Sheth" loading="lazy"></span>
+        <h3>Amit Sheth</h3>
+        <p class="aff">University of South Carolina and IAIRO</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/southcarolina.svg" alt="University of South Carolina"></span><span class="logo dark"><img src="assets/logos/iairo.png" alt="IAIRO"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://research.ibm.com/people/francesca-rossi" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/rossi.jpg" alt="Francesca Rossi" loading="lazy"></span>
+        <h3>Francesca Rossi</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.nist.gov/people/craig-greenberg" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/craig.jpg" alt="Craig Greenberg" loading="lazy"></span>
+        <h3>Craig Greenberg</h3>
+        <p class="aff">NIST</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/nist.svg" alt="NIST"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://josephorallo.webs.upv.es/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/jose.jpg" alt="José Hernández-Orallo" loading="lazy"></span>
+        <h3>José Hernández-Orallo</h3>
+        <p class="aff">University of Cambridge</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/cambridge.svg" alt="University of Cambridge"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
     </div>
   </div>
 </section>
