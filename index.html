@@ -44,7 +44,8 @@
   --rule:#16202c; --hair:#d6dbe1;
   --link:#1d4f91;
   --navy:#0f2540; --navy-2:#173356; --on-navy:#ffffff; --on-navy-2:#c4d0de; --on-navy-3:#8fa3bb;
-  --accent:#e0a526; --num:#173356;
+  --accent:#e0a526; --num:#173356; --gold-text:#8a5a00;
+  --surface:#ffffff; --line-2:#c3cad3; --chip-border:#e3e6ea;
   --serif:"STIX Two Text","Times New Roman",Times,serif;
   --sans:"Public Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
 }
@@ -52,18 +53,21 @@
   :root:not([data-theme="light"]){
     --bg:#11161c; --tint:#161d25; --ink:#e8ecf1; --ink-2:#c3cbd5; --ink-3:#97a2af;
     --rule:#e8ecf1; --hair:#2c3642; --link:#8fb8ec;
-    --navy:#0b1c31; --navy-2:#13283f; --num:#8fb8ec;
+    --navy:#0b1c31; --navy-2:#13283f; --num:#8fb8ec; --gold-text:#e0a526;
+    --surface:#171e27; --line-2:#3a4655; --chip-border:#ffffff;
   }
 }
 :root[data-theme="dark"]{
   --bg:#11161c; --tint:#161d25; --ink:#e8ecf1; --ink-2:#c3cbd5; --ink-3:#97a2af;
   --rule:#e8ecf1; --hair:#2c3642; --link:#8fb8ec;
-  --navy:#0b1c31; --navy-2:#13283f; --num:#8fb8ec;
+  --navy:#0b1c31; --navy-2:#13283f; --num:#8fb8ec; --gold-text:#e0a526;
+  --surface:#171e27; --line-2:#3a4655; --chip-border:#ffffff;
 }
 
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:16px}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans)}
+html{background:var(--bg)}
+body{margin:0;background:transparent;color:var(--ink);font:17px/1.65 var(--sans)}
 a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--link);outline-offset:2px}
@@ -81,39 +85,42 @@ nav.site ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4
 nav.site a{color:var(--ink-2);text-decoration:none;display:inline-block;padding:10px 0;border-bottom:2px solid transparent}
 nav.site a:hover{color:var(--ink);border-bottom-color:var(--accent)}
 
+/* ---------- background canvas ---------- */
+canvas.flow{position:fixed;inset:0;width:100vw;height:100vh;display:block;pointer-events:none;z-index:-1}
+
 /* ---------- hero ---------- */
-.hero{background:var(--navy);color:var(--on-navy);position:relative;overflow:hidden}
-.hero canvas.flow{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0}
-.hero .wrap{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:56px;padding-top:64px;padding-bottom:64px;position:relative;z-index:1}
-.hero .kicker{font:600 15px/1.4 var(--sans);color:var(--accent);margin:0 0 16px}
-.hero h1{font-size:clamp(36px,4.8vw,58px);line-height:1.08;margin:0 0 14px;color:#fff}
+.hero{position:relative}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:56px;padding-top:64px;padding-bottom:64px}
+.hero .kicker{font:600 15px/1.4 var(--sans);color:var(--gold-text);margin:0 0 16px}
+.hero h1{font-size:clamp(36px,4.8vw,58px);line-height:1.08;margin:0 0 14px;color:var(--ink)}
 .hero h1 .l{display:block}
-.hero .subtitle{font:italic 400 clamp(19px,2vw,23px)/1.35 var(--serif);color:var(--on-navy-2);margin:0 0 26px}
-.hero .opening{font-size:18px;line-height:1.6;color:#e9eef4;max-width:40em}
+.hero .subtitle{font:italic 400 clamp(19px,2vw,23px)/1.35 var(--serif);color:var(--ink-2);margin:0 0 26px}
+.hero .opening{font-size:18px;line-height:1.6;color:var(--ink);max-width:40em}
 .hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
 .btn{display:inline-block;padding:13px 22px;border-radius:4px;font:600 16px/1 var(--sans);text-decoration:none}
 .btn-accent{background:var(--accent);color:#16202c}
 .btn-accent:hover{background:#f0b938}
-.hero .textlink{color:#fff;font-weight:600}
-.aaai-panel{align-self:start;border-left:1px solid rgba(255,255,255,.18);padding-left:40px}
-.aaai-id{display:flex;align-items:center;gap:16px;color:#fff;text-decoration:none;margin-bottom:28px}
-.aaai-id img{width:72px;height:auto;flex:none}
+.hero .textlink{color:var(--link);font-weight:600}
+.aaai-panel{align-self:start;border-left:1px solid var(--hair);padding-left:40px}
+.aaai-id{display:flex;align-items:center;gap:16px;color:var(--ink);text-decoration:none;margin-bottom:28px}
+.aaai-id img{width:72px;height:auto;flex:none;filter:brightness(0)}
 .aaai-id b{display:block;font:700 24px/1.1 var(--sans)}
-.aaai-id span{display:block;font:400 15px/1.35 var(--sans);color:var(--on-navy-2);margin-top:4px}
+.aaai-id span{display:block;font:400 15px/1.35 var(--sans);color:var(--ink-3);margin-top:4px}
 .aaai-id:hover b{text-decoration:underline;text-underline-offset:3px}
 .keydates{margin:0;display:grid;gap:0}
-.keydates div{display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.14)}
-.keydates div:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
-.keydates dt{color:var(--on-navy-2);font-size:15px}
-.keydates dd{margin:0;font-weight:600;font-size:15px;text-align:right;color:#fff}
-.keydates .tbd{color:var(--on-navy-3);font-weight:500}
-.venue-note{font-size:14px;color:var(--on-navy-3);margin-top:14px}
+.keydates div{display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 0;border-top:1px solid var(--hair)}
+.keydates div:last-child{border-bottom:1px solid var(--hair)}
+.keydates dt{color:var(--ink-3);font-size:15px}
+.keydates dd{margin:0;font-weight:600;font-size:15px;text-align:right;color:var(--ink)}
+.keydates .tbd{color:var(--ink-3);font-weight:500}
+.venue-note{font-size:14px;color:var(--ink-3);margin-top:14px}
 
 /* ---------- sections ---------- */
 section{padding:72px 0;border-top:1px solid var(--hair)}
 section.tint{background:var(--tint)}
-.hero + section{border-top:0}
+.hero + section{border-top:1px solid var(--hair)}
 .sec{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
+.sec.full{grid-template-columns:1fr;gap:32px}
 .sec > h2{font-size:30px;line-height:1.15;margin:0;position:relative;padding-top:18px}
 .sec > h2::before{content:"";position:absolute;top:0;left:0;width:36px;height:3px;background:var(--accent)}
 .body{min-width:0}
@@ -155,53 +162,58 @@ table.dates td:first-child{width:55%}
 ul.topics{columns:2;column-gap:3rem;padding-left:1.1em}
 ul.topics li{break-inside:avoid}
 
-/* organizers */
-.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 20px;margin:12px 0 8px}
-.member{display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start;padding:14px;margin:0 -14px;border-radius:6px;color:var(--ink);text-decoration:none;transition:background-color .15s ease}
-.member img.photo{width:80px;height:80px;border-radius:50%;object-fit:cover;display:block;background:var(--tint)}
-.member .name{font:600 16.5px/1.3 var(--sans);color:var(--link);display:block}
-.member .aff{font:400 14px/1.45 var(--sans);color:var(--ink-3);display:block;margin-top:3px}
-.member .orgs{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:9px}
-.member .orgs img{height:16px;width:auto;max-width:96px;object-fit:contain;filter:grayscale(1);opacity:.6;transition:filter .15s ease,opacity .15s ease}
-.member .orgs img[src$="mila.svg"]{height:20px}
-.member .orgs img[src$="harvard.svg"]{height:18px}
-.member .orgs img[src$="cmu.svg"]{height:12px}
-.member .orgs img[src$="servicenow.svg"],.member .orgs img[src$="deepmind.svg"]{height:11px}
-.member .orgs img[src$="stanford.svg"],.member .orgs img[src$="cohere.png"]{height:14px}
-.member .orgs img[src$="cambridge.svg"]{height:20px}
-.member .orgs img[src$="iairo.png"]{height:18px;filter:grayscale(1) invert(1)}
-.member .orgs .txt{font:600 12px/1 var(--sans);color:var(--ink-3)}
-.member:hover,.member:focus-visible{background:var(--tint)}
-.member:hover .name,.member:focus-visible .name{text-decoration:underline;text-underline-offset:3px}
-.member:hover .orgs img,.member:focus-visible .orgs img{filter:none;opacity:1}
-.member:hover .orgs img[src$="iairo.png"],.member:focus-visible .orgs img[src$="iairo.png"]{filter:invert(1)}
-.member:hover .orgs .txt{color:var(--ink)}
-.roster.two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px}
-.subhead{font:600 13px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
-.subhead + .roster{margin-top:4px}
-.roster + .subhead{margin-top:34px}
+/* organizers: cards */
+.people{display:flex;flex-wrap:wrap;justify-content:center;gap:18px}
+.person{width:206px;position:relative;display:flex;flex-direction:column;align-items:center;text-align:center;padding:24px 18px 0;background:var(--surface);border:1px solid var(--hair);border-radius:14px;color:var(--ink);text-decoration:none;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.person .ph{width:116px;height:116px;border-radius:50%;overflow:hidden;margin-bottom:14px;box-shadow:0 0 0 4px var(--surface),0 0 0 5px var(--line-2);transition:box-shadow .25s ease;flex:none}
+.person .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.person h3{font:600 16.5px/1.3 var(--sans);margin:0 0 4px}
+.person .aff{font-size:13.5px;color:var(--ink-2);line-height:1.4;margin:0 0 12px}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:16px}
+.logo{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 9px;border-radius:7px;background:#fff;border:1px solid var(--chip-border)}
+.logo img{height:16px;width:auto;max-width:100px;object-fit:contain}
+.logo img[src$="ibm.svg"]{height:17px}
+.logo img[src$="cohere.png"]{height:14px}
+.logo img[src$="mila.svg"]{height:22px}
+.logo img[src$="servicenow.svg"]{height:11px}
+.logo img[src$="deepmind.svg"]{height:11px}
+.logo img[src$="harvard.svg"]{height:19px}
+.logo img[src$="cmu.svg"]{height:13px;max-width:110px}
+.logo img[src$="stanford.svg"]{height:14px}
+.logo img[src$="southcarolina.svg"]{height:17px}
+.logo img[src$="iairo.png"]{height:20px}
+.logo img[src$="cambridge.svg"]{height:22px}
+.logo.dark{background:#16181d;border-color:#16181d}
+.logo.text{font:600 12px/1 var(--sans);color:#1d2a44;letter-spacing:.01em}
+.person .go{margin-top:auto;align-self:stretch;display:flex;justify-content:center;align-items:center;gap:6px;padding:11px 0;margin-left:-18px;margin-right:-18px;border-top:1px solid var(--hair);font:500 13px var(--sans);color:var(--ink-3);transition:color .25s ease,background .25s ease}
+.person .go svg{transition:transform .25s ease}
+.person:hover,.person:focus-visible{transform:translateY(-4px);border-color:var(--link);box-shadow:0 18px 36px -22px rgba(20,24,32,.45)}
+.person:hover .ph,.person:focus-visible .ph{box-shadow:0 0 0 4px var(--surface),0 0 0 6px var(--link)}
+.person:hover .ph img,.person:focus-visible .ph img{transform:scale(1.07)}
+.person:hover .go,.person:focus-visible .go{color:var(--bg);background:var(--link)}
+.person:hover .go svg,.person:focus-visible .go svg{transform:translate(2px,-2px)}
+.people-sub{margin:48px 0 20px;text-align:center}
+.people-sub:first-child{margin-top:0}
+.people-sub h3{font-size:24px;margin:0}
 
 /* footer */
-footer{background:var(--navy);color:var(--on-navy-2);font:400 15px/1.6 var(--sans)}
+footer{border-top:1px solid var(--hair);color:var(--ink-3);font:400 15px/1.6 var(--sans)}
 footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding-top:28px;padding-bottom:28px}
 footer .fid{display:flex;align-items:center;gap:14px}
-footer .fid img{width:40px;height:auto}
-footer a{color:#fff}
+footer .fid img{width:40px;height:auto;filter:brightness(0)}
+footer a{color:var(--link)}
 
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .member .orgs img{filter:grayscale(1) invert(1) brightness(1.2);opacity:.7}
-  :root:not([data-theme="light"]) .member .orgs img[src$="iairo.png"]{filter:grayscale(1);opacity:.7}
-  :root:not([data-theme="light"]) .member:hover .orgs img{filter:grayscale(1) invert(1) brightness(1.4);opacity:1}
-  :root:not([data-theme="light"]) .member:hover .orgs img[src$="iairo.png"]{filter:none}
-  :root:not([data-theme="light"]) section.tint table.bt .case-meta{background:var(--bg)}
+  :root:not([data-theme="light"]) .aaai-id img,:root:not([data-theme="light"]) footer .fid img{filter:none}
   :root:not([data-theme="light"]) .b2e svg{color:#fff}
 }
+:root[data-theme="dark"] .aaai-id img,:root[data-theme="dark"] footer .fid img{filter:none}
+
 
 @media (max-width:1020px){
   .hero .wrap{grid-template-columns:1fr;gap:40px}
-  .aaai-panel{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.18);padding-top:28px}
+  .aaai-panel{border-left:0;padding-left:0;border-top:1px solid var(--hair);padding-top:28px}
   .sec{grid-template-columns:1fr;gap:22px}
-  .roster,.roster.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:700px){
   body{font-size:16.5px}
@@ -212,7 +224,11 @@ footer a{color:#fff}
   .duo > div + div{padding-left:0;border-left:0;border-top:1px solid var(--hair)}
   ol.procedure{grid-template-columns:1fr}
   ul.topics{columns:1}
-  .roster,.roster.two{grid-template-columns:1fr}
+  .people{gap:12px}
+  .person{width:calc(50% - 6px);padding:18px 10px 0}
+  .person .go{margin-left:-10px;margin-right:-10px}
+  .person .ph{width:88px;height:88px}
+  .person h3{font-size:15px}
   table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
   table.stack,table.stack tbody,table.stack tr,table.stack td,table.stack th{display:block;width:auto!important}
   table.stack tr{padding:14px 0;border-bottom:1px solid var(--hair)}
@@ -220,10 +236,11 @@ footer a{color:#fff}
   table.stack td,table.stack tbody th{border:0;padding:3px 0}
   table.stack td[data-label]::before{content:attr(data-label);display:block;font:600 12px/1.4 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.person:hover,.person:focus-visible{transform:none}.person:hover .ph img,.person:focus-visible .ph img{transform:none}}
 </style>
 </head>
 <body>
+<canvas class="flow" aria-hidden="true"></canvas>
 
 <header class="masthead">
   <div class="wrap">
@@ -247,7 +264,6 @@ footer a{color:#fff}
 <main id="top">
 
 <div class="hero">
-  <canvas class="flow" aria-hidden="true"></canvas>
   <div class="wrap">
     <div>
       <p class="kicker">AAAI-27 Bridge Program</p>
@@ -306,7 +322,7 @@ footer a{color:#fff}
 </section>
 
 <!-- ================= CASES ================= -->
-<section id="cases" class="tint">
+<section id="cases">
   <div class="wrap sec">
     <h2>Cases</h2>
     <div class="body">
@@ -402,7 +418,7 @@ footer a{color:#fff}
 </section>
 
 <!-- ================= DATES ================= -->
-<section id="dates" class="tint">
+<section id="dates">
   <div class="wrap sec">
     <h2>Dates and Program</h2>
     <div class="body">
@@ -422,28 +438,105 @@ footer a{color:#fff}
 
 <!-- ================= ORGANIZERS ================= -->
 <section id="organizers">
-  <div class="wrap sec">
+  <div class="wrap sec full">
     <h2>Organizers</h2>
     <div class="body">
-    <p class="subhead">Bridge Committee</p>
-    <div class="roster">
-      <a class="member" href="https://khvedant02.github.io/"><img class="photo" src="photo/people/vedant.jpg" alt="" loading="lazy"><span><span class="name">Vedant Khandelwal</span><span class="aff">IBM Research</span><span class="orgs"><img src="assets/logos/ibm.svg" alt="IBM"></span></span></a>
-      <a class="member" href="https://scholar.google.com/citations?user=c06_VJAAAAAJ"><img class="photo" src="photo/people/dhaval.jpg" alt="" loading="lazy"><span><span class="name">Dhaval Patel</span><span class="aff">IBM Research</span><span class="orgs"><img src="assets/logos/ibm.svg" alt="IBM"></span></span></a>
-      <a class="member" href="https://www.alexdrouin.com/"><img class="photo" src="photo/people/alexandre.jpg" alt="" loading="lazy"><span><span class="name">Alexandre Drouin</span><span class="aff">Cohere and Mila</span><span class="orgs"><img src="assets/logos/cohere.png" alt="Cohere"><img src="assets/logos/mila.svg" alt="Mila"></span></span></a>
-      <a class="member" href="https://research.ibm.com/people/lior-horesh"><img class="photo" src="photo/people/lior.jpg" alt="" loading="lazy"><span><span class="name">Lior Horesh</span><span class="aff">IBM Research</span><span class="orgs"><img src="assets/logos/ibm.svg" alt="IBM"></span></span></a>
-      <a class="member" href="https://www.servicenow.com/research/author/jason-stanley.html"><img class="photo" src="photo/people/jason.jpg" alt="" loading="lazy"><span><span class="name">Jason Stanley</span><span class="aff">ServiceNow</span><span class="orgs"><img src="assets/logos/servicenow.svg" alt="ServiceNow"></span></span></a>
-      <a class="member" href="https://lora-aroyo.org/"><img class="photo" src="photo/people/lora.jpg" alt="" loading="lazy"><span><span class="name">Lora Aroyo</span><span class="aff">Google DeepMind</span><span class="orgs"><img src="assets/logos/deepmind.svg" alt="Google DeepMind"></span></span></a>
-      <a class="member" href="https://ningkko.github.io/"><img class="photo" src="photo/people/ning.jpg" alt="" loading="lazy"><span><span class="name">Yining Hua</span><span class="aff">Harvard T.H. Chan School of Public Health and EvalScience Inc.</span><span class="orgs"><img src="assets/logos/harvard.svg" alt="Harvard University"><span class="txt">EvalScience</span></span></span></a>
-      <a class="member" href="https://www.andrew.cmu.edu/user/pcorina/"><img class="photo" src="photo/people/corina.jpg" alt="" loading="lazy"><span><span class="name">Corina Păsăreanu</span><span class="aff">Carnegie Mellon University</span><span class="orgs"><img src="assets/logos/cmu.svg" alt="Carnegie Mellon University"></span></span></a>
-      <a class="member" href="https://ankareuel.com/"><img class="photo" src="photo/people/anka.jpg" alt="" loading="lazy"><span><span class="name">Anka Reuel</span><span class="aff">Stanford University; Harvard Kennedy School and Harvard SEAS (from January 2027)</span><span class="orgs"><img src="assets/logos/stanford.svg" alt="Stanford University"><img src="assets/logos/harvard.svg" alt="Harvard University"></span></span></a>
+    <div class="people-sub"><h3>Bridge Committee</h3></div>
+    <div class="people">
+      <a class="person" href="https://khvedant02.github.io/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/vedant.jpg" alt="Vedant Khandelwal" loading="lazy"></span>
+        <h3>Vedant Khandelwal</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://scholar.google.com/citations?user=c06_VJAAAAAJ" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/dhaval.jpg" alt="Dhaval Patel" loading="lazy"></span>
+        <h3>Dhaval Patel</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Google Scholar <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.alexdrouin.com/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/alexandre.jpg" alt="Alexandre Drouin" loading="lazy"></span>
+        <h3>Alexandre Drouin</h3>
+        <p class="aff">Cohere and Mila</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/cohere.png" alt="Cohere"></span><span class="logo"><img src="assets/logos/mila.svg" alt="Mila"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://research.ibm.com/people/lior-horesh" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/lior.jpg" alt="Lior Horesh" loading="lazy"></span>
+        <h3>Lior Horesh</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.servicenow.com/research/author/jason-stanley.html" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/jason.jpg" alt="Jason Stanley" loading="lazy"></span>
+        <h3>Jason Stanley</h3>
+        <p class="aff">ServiceNow</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/servicenow.svg" alt="ServiceNow"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://lora-aroyo.org/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/lora.jpg" alt="Lora Aroyo" loading="lazy"></span>
+        <h3>Lora Aroyo</h3>
+        <p class="aff">Google DeepMind</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/deepmind.svg" alt="Google DeepMind"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://ningkko.github.io/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/ning.jpg" alt="Yining Hua" loading="lazy"></span>
+        <h3>Yining Hua</h3>
+        <p class="aff">Harvard T.H. Chan School of Public Health and EvalScience Inc.</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/harvard.svg" alt="Harvard University"></span><span class="logo text">EvalScience</span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.andrew.cmu.edu/user/pcorina/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/corina.jpg" alt="Corina Păsăreanu" loading="lazy"></span>
+        <h3>Corina Păsăreanu</h3>
+        <p class="aff">Carnegie Mellon University</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/cmu.svg" alt="Carnegie Mellon University"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://ankareuel.com/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/anka.jpg" alt="Anka Reuel" loading="lazy"></span>
+        <h3>Anka Reuel</h3>
+        <p class="aff">Stanford University; Harvard Kennedy School and Harvard SEAS (from January 2027)</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/stanford.svg" alt="Stanford University"></span><span class="logo"><img src="assets/logos/harvard.svg" alt="Harvard University"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
     </div>
-
-    <p class="subhead">Steering Committee</p>
-    <div class="roster two">
-      <a class="member" href="https://amit.aiisc.ai/"><img class="photo" src="photo/people/amit.jpg" alt="" loading="lazy"><span><span class="name">Amit Sheth</span><span class="aff">University of South Carolina and IAIRO</span><span class="orgs"><img src="assets/logos/southcarolina.svg" alt="University of South Carolina"><img src="assets/logos/iairo.png" alt="IAIRO"></span></span></a>
-      <a class="member" href="https://research.ibm.com/people/francesca-rossi"><img class="photo" src="photo/people/rossi.jpg" alt="" loading="lazy"><span><span class="name">Francesca Rossi</span><span class="aff">IBM Research</span><span class="orgs"><img src="assets/logos/ibm.svg" alt="IBM"></span></span></a>
-      <a class="member" href="https://www.nist.gov/people/craig-greenberg"><img class="photo" src="photo/people/craig.jpg" alt="" loading="lazy"><span><span class="name">Craig Greenberg</span><span class="aff">NIST</span></span></a>
-      <a class="member" href="https://josephorallo.webs.upv.es/"><img class="photo" src="photo/people/jose.jpg" alt="" loading="lazy"><span><span class="name">José Hernández-Orallo</span><span class="aff">University of Cambridge</span><span class="orgs"><img src="assets/logos/cambridge.svg" alt="University of Cambridge"></span></span></a>
+    <div class="people-sub"><h3>Steering Committee</h3></div>
+    <div class="people">
+      <a class="person" href="https://amit.aiisc.ai/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/amit.jpg" alt="Amit Sheth" loading="lazy"></span>
+        <h3>Amit Sheth</h3>
+        <p class="aff">University of South Carolina and IAIRO</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/southcarolina.svg" alt="University of South Carolina"></span><span class="logo dark"><img src="assets/logos/iairo.png" alt="IAIRO"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://research.ibm.com/people/francesca-rossi" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/rossi.jpg" alt="Francesca Rossi" loading="lazy"></span>
+        <h3>Francesca Rossi</h3>
+        <p class="aff">IBM Research</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/ibm.svg" alt="IBM"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://www.nist.gov/people/craig-greenberg" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/craig.jpg" alt="Craig Greenberg" loading="lazy"></span>
+        <h3>Craig Greenberg</h3>
+        <p class="aff">NIST</p>
+        
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
+      <a class="person" href="https://josephorallo.webs.upv.es/" target="_blank" rel="noopener">
+        <span class="ph"><img src="photo/people/jose.jpg" alt="José Hernández-Orallo" loading="lazy"></span>
+        <h3>José Hernández-Orallo</h3>
+        <p class="aff">University of Cambridge</p>
+        <span class="logos"><span class="logo"><img src="assets/logos/cambridge.svg" alt="University of Cambridge"></span></span>
+        <span class="go">Website <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg></span>
+      </a>
     </div>
     </div>
   </div>
@@ -469,59 +562,82 @@ footer a{color:#fff}
 </footer>
 
 <script>
-/* Hero background: scattered points (benchmark scores) settle into ordered lanes (evidence) as they move right. */
+/* Page background: scattered points (benchmark scores) settle into ordered lanes (evidence) as they move right.
+   Points near the cursor are pushed aside and linked to it, then ease back. */
 (function(){
-  var hero=document.querySelector('.hero'), cv=hero&&hero.querySelector('canvas.flow');
+  var cv=document.querySelector('canvas.flow');
   if(!cv||!cv.getContext) return;
   var ctx=cv.getContext('2d'), dpr=Math.min(window.devicePixelRatio||1,2);
-  var W=0,H=0,pts=[],lanes=[],running=false,visible=true,raf=0,last=0;
-  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W=0,H=0,pts=[],lanes=[],running=false,raf=0,last=0,mouse=null,R=150;
+  var mqReduce=window.matchMedia?window.matchMedia('(prefers-reduced-motion: reduce)'):null;
+  var mqDark=window.matchMedia?window.matchMedia('(prefers-color-scheme: dark)'):null;
+  function dark(){var t=document.documentElement.getAttribute('data-theme');return t?t==='dark':!!(mqDark&&mqDark.matches);}
   function smooth(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);}
   function resize(){
-    var r=hero.getBoundingClientRect(); W=r.width; H=r.height;
+    W=window.innerWidth; H=window.innerHeight;
     cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
-    var n=Math.max(5,Math.round(H/70)); lanes=[];
-    for(var i=0;i<n;i++) lanes.push(H*(0.12+0.76*i/(n-1)));
-    var count=Math.min(170,Math.round(W*H/6000)); pts=[];
+    var n=Math.max(6,Math.round(H/80)); lanes=[];
+    for(var i=0;i<n;i++) lanes.push(H*(0.06+0.88*i/(n-1)));
+    var count=Math.min(160,Math.round(W*H/8500)); pts=[];
     for(var j=0;j<count;j++) pts.push(make(Math.random()*W));
   }
   function make(x){
-    return {x:x,y0:Math.random()*H,lane:lanes[(Math.random()*lanes.length)|0],
-      v:14+Math.random()*22,ph:Math.random()*6.283,f:0.6+Math.random()*1.4,a:18+Math.random()*34,r:1.2+Math.random()*1.1};
+    return {x:x,y0:Math.random()*H,lane:lanes[(Math.random()*lanes.length)|0],ox:0,oy:0,
+      v:12+Math.random()*20,ph:Math.random()*6.283,f:0.5+Math.random()*1.2,a:18+Math.random()*34,r:1.2+Math.random()*1};
   }
-  function yAt(p,x,t){var k=smooth((x/W-0.15)/0.7);return (p.y0+Math.sin(t*p.f+p.ph+x*0.012)*p.a)*(1-k)+p.lane*k;}
+  function yAt(p,x,t){var k=smooth((x/W-0.12)/0.72);return (p.y0+Math.sin(t*p.f+p.ph+x*0.012)*p.a)*(1-k)+p.lane*k;}
   function draw(t){
+    var d=dark(), dot=d?'255,255,255':'29,79,145', gold=d?'224,165,38':'176,116,10', scale=d?1:0.85;
     ctx.clearRect(0,0,W,H);
-    // faint lanes on the right, where the evidence settles
     for(var i=0;i<lanes.length;i++){
-      var g=ctx.createLinearGradient(W*0.45,0,W,0);
-      g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(1,'rgba(255,255,255,0.10)');
-      ctx.strokeStyle=g;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W*0.45,lanes[i]);ctx.lineTo(W,lanes[i]);ctx.stroke();
+      var g=ctx.createLinearGradient(W*0.5,0,W,0);
+      g.addColorStop(0,'rgba('+dot+',0)');g.addColorStop(1,'rgba('+dot+','+(0.06*scale)+')');
+      ctx.strokeStyle=g;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W*0.5,lanes[i]);ctx.lineTo(W,lanes[i]);ctx.stroke();
     }
     for(var j=0;j<pts.length;j++){
-      var p=pts[j], y=yAt(p,p.x,t), k=smooth((p.x/W-0.15)/0.7);
-      var alpha=0.16+0.46*k;
-      // short trail
-      var x2=p.x-10-p.v*0.4, y2=yAt(p,x2,t-0.15);
-      ctx.strokeStyle='rgba(143,184,236,'+(alpha*0.55)+')';ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(p.x,y);ctx.stroke();
-      ctx.fillStyle=k>0.92?'rgba(224,165,38,'+(alpha+0.1)+')':'rgba(255,255,255,'+alpha+')';
-      ctx.beginPath();ctx.arc(p.x,y,p.r,0,6.283);ctx.fill();
+      var p=pts[j], k=smooth((p.x/W-0.12)/0.72);
+      var x=p.x+p.ox, y=yAt(p,p.x,t)+p.oy;
+      var near=0;
+      if(mouse){var dx=x-mouse.x,dy=y-mouse.y,dd=Math.sqrt(dx*dx+dy*dy);if(dd<R*1.25){near=1-dd/(R*1.25);}}
+      var alpha=(0.10+0.26*k+0.45*near)*scale;
+      var x2=x-10-p.v*0.4, y2=yAt(p,p.x-10-p.v*0.4,t-0.15)+p.oy;
+      ctx.strokeStyle='rgba('+dot+','+(alpha*0.6)+')';ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(x,y);ctx.stroke();
+      if(near>0){
+        ctx.strokeStyle='rgba('+gold+','+(near*0.35*scale)+')';
+        ctx.beginPath();ctx.moveTo(mouse.x,mouse.y);ctx.lineTo(x,y);ctx.stroke();
+      }
+      ctx.fillStyle=(k>0.92||near>0.3)?'rgba('+gold+','+Math.min(1,alpha+0.12)+')':'rgba('+dot+','+alpha+')';
+      ctx.beginPath();ctx.arc(x,y,p.r+near*1.2,0,6.283);ctx.fill();
     }
   }
   function step(now){
     if(!running) return;
-    var dt=last?Math.min(0.05,(now-last)/1000):0; last=now;
-    for(var j=0;j<pts.length;j++){var p=pts[j];p.x+=p.v*dt;if(p.x>W+12){pts[j]=make(-12);}}
-    draw(now/1000); raf=requestAnimationFrame(step);
+    var dt=last?Math.min(0.05,(now-last)/1000):0; last=now; var t=now/1000;
+    for(var j=0;j<pts.length;j++){
+      var p=pts[j]; p.x+=p.v*dt;
+      if(p.x>W+12){pts[j]=p=make(-12);}
+      var tx=0,ty=0;
+      if(mouse){
+        var bx=p.x, by=yAt(p,p.x,t), dx=bx-mouse.x, dy=by-mouse.y, d=Math.sqrt(dx*dx+dy*dy)||1;
+        if(d<R){var f=(1-d/R);f=f*f*56;tx=dx/d*f;ty=dy/d*f;}
+      }
+      p.ox+=(tx-p.ox)*0.12; p.oy+=(ty-p.oy)*0.12;
+    }
+    draw(t); raf=requestAnimationFrame(step);
   }
-  function start(){if(reduce||running||!visible||document.hidden) return;running=true;last=0;raf=requestAnimationFrame(step);}
+  function start(){if((mqReduce&&mqReduce.matches)||running||document.hidden) return;running=true;last=0;raf=requestAnimationFrame(step);}
   function stop(){running=false;cancelAnimationFrame(raf);}
   resize(); draw(0);
-  if(window.ResizeObserver){new ResizeObserver(function(){resize();draw(performance.now()/1000);}).observe(hero);}
-  else window.addEventListener('resize',function(){resize();draw(0);});
-  if(window.IntersectionObserver){new IntersectionObserver(function(e){visible=e[0].isIntersecting;visible?start():stop();}).observe(hero);}
+  window.addEventListener('resize',function(){resize();draw(performance.now()/1000);});
+  window.addEventListener('pointermove',function(e){mouse={x:e.clientX,y:e.clientY};},{passive:true});
+  window.addEventListener('pointerdown',function(e){mouse={x:e.clientX,y:e.clientY};},{passive:true});
+  document.addEventListener('pointerleave',function(){mouse=null;});
+  window.addEventListener('blur',function(){mouse=null;});
+  document.documentElement.addEventListener('mouseleave',function(){mouse=null;});
+  window.addEventListener('pointerup',function(e){if(e.pointerType==='touch')mouse=null;},{passive:true});
   document.addEventListener('visibilitychange',function(){document.hidden?stop():start();});
+  if(mqDark&&mqDark.addEventListener) mqDark.addEventListener('change',function(){draw(performance.now()/1000);});
   start();
 })();
 </script>
