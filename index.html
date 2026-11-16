@@ -40,110 +40,128 @@
 </script>
 <style>
 :root{
-  --bg:#ffffff; --ink:#1b1b1b; --ink-2:#3d3d3d; --ink-3:#5f5f5f;
-  --rule:#1b1b1b; --hair:#cfcfcf; --soft:#f4f4f2;
-  --link:#1a4f8b; --link-visited:#1a4f8b;
+  --bg:#ffffff; --tint:#f3f5f8; --ink:#16202c; --ink-2:#3a4552; --ink-3:#5d6875;
+  --rule:#16202c; --hair:#d6dbe1;
+  --link:#1d4f91;
+  --navy:#0f2540; --navy-2:#173356; --on-navy:#ffffff; --on-navy-2:#c4d0de; --on-navy-3:#8fa3bb;
+  --accent:#e0a526; --num:#173356;
   --serif:"STIX Two Text","Times New Roman",Times,serif;
   --sans:"Public Sans",-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --bg:#141414; --ink:#ecebe8; --ink-2:#c9c8c4; --ink-3:#a3a29e;
-    --rule:#ecebe8; --hair:#3a3a3a; --soft:#1d1d1d;
-    --link:#8cb6ea; --link-visited:#8cb6ea;
+    --bg:#11161c; --tint:#161d25; --ink:#e8ecf1; --ink-2:#c3cbd5; --ink-3:#97a2af;
+    --rule:#e8ecf1; --hair:#2c3642; --link:#8fb8ec;
+    --navy:#0b1c31; --navy-2:#13283f; --num:#8fb8ec;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#141414; --ink:#ecebe8; --ink-2:#c9c8c4; --ink-3:#a3a29e;
-  --rule:#ecebe8; --hair:#3a3a3a; --soft:#1d1d1d;
-  --link:#8cb6ea; --link-visited:#8cb6ea;
+  --bg:#11161c; --tint:#161d25; --ink:#e8ecf1; --ink-2:#c3cbd5; --ink-3:#97a2af;
+  --rule:#e8ecf1; --hair:#2c3642; --link:#8fb8ec;
+  --navy:#0b1c31; --navy-2:#13283f; --num:#8fb8ec;
 }
 
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:18px/1.6 var(--serif);font-kerning:normal}
-a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:2px}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.65 var(--sans)}
+a{color:var(--link);text-decoration-thickness:1px;text-underline-offset:3px}
 a:hover{text-decoration-thickness:2px}
 :focus-visible{outline:2px solid var(--link);outline-offset:2px}
 img{max-width:100%}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-.measure{max-width:44rem}
+.wrap{max-width:1180px;margin:0 auto;padding:0 32px}
 p{margin:0 0 1em}
-.sans{font-family:var(--sans)}
-.num{font-variant-numeric:lining-nums}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.005em}
 
-/* ---------- masthead ---------- */
-.masthead{border-bottom:1px solid var(--hair)}
-.masthead .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 28px;padding-top:18px;padding-bottom:14px}
-.lockup{display:flex;align-items:center;gap:14px;color:var(--ink);text-decoration:none}
-.lockup:hover{text-decoration:none}
-.aaai{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font:600 14px/1.2 var(--sans)}
-.aaai img{height:34px;width:auto;filter:brightness(0)}
-.aaai span{display:block}
-.aaai small{display:block;font-weight:400;color:var(--ink-3);font-size:13px}
-.divider{width:1px;height:34px;background:var(--hair)}
-.b2e{display:flex;align-items:center;gap:9px;color:var(--ink);text-decoration:none;font:700 17px/1 var(--sans);letter-spacing:-.01em}
-.b2e svg{width:30px;height:30px;flex:none}
-nav.site{font:500 15px/1 var(--sans)}
-nav.site ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 20px}
-nav.site a{color:var(--ink-2);text-decoration:none;display:inline-block;padding:8px 0}
-nav.site a:hover{color:var(--ink);text-decoration:underline}
+/* ---------- header ---------- */
+.masthead{background:var(--bg);border-bottom:1px solid var(--hair)}
+.masthead .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 32px;min-height:68px;padding-top:10px;padding-bottom:10px}
+.b2e{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font:700 19px/1 var(--sans);letter-spacing:-.01em}
+.b2e svg{width:32px;height:32px;flex:none;color:var(--navy)}
+nav.site ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 24px;font:500 15px/1 var(--sans)}
+nav.site a{color:var(--ink-2);text-decoration:none;display:inline-block;padding:10px 0;border-bottom:2px solid transparent}
+nav.site a:hover{color:var(--ink);border-bottom-color:var(--accent)}
 
-/* ---------- title block ---------- */
-.titleblock{padding:56px 0 40px;border-bottom:1px solid var(--hair)}
-.titleblock h1{font:600 clamp(32px,4.6vw,50px)/1.12 var(--serif);letter-spacing:-.01em;margin:0 0 10px}
-.titleblock h1 .l{display:block}
-.titleblock .subtitle{font:400 clamp(19px,2.2vw,24px)/1.35 var(--serif);font-style:italic;color:var(--ink-2);margin:0 0 22px}
-.venue{font:500 16px/1.5 var(--sans);color:var(--ink);margin:0 0 26px}
-.venue a{font-weight:600}
-.opening{font-size:20px;line-height:1.55}
-.submitline{font:400 16px/1.6 var(--sans);color:var(--ink-2);margin-top:22px}
-.submitline a{font-weight:600}
+/* ---------- hero ---------- */
+.hero{background:var(--navy);color:var(--on-navy);position:relative;overflow:hidden}
+.hero canvas.flow{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none;z-index:0}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(0,1fr);gap:56px;padding-top:64px;padding-bottom:64px;position:relative;z-index:1}
+.hero .kicker{font:600 15px/1.4 var(--sans);color:var(--accent);margin:0 0 16px}
+.hero h1{font-size:clamp(36px,4.8vw,58px);line-height:1.08;margin:0 0 14px;color:#fff}
+.hero h1 .l{display:block}
+.hero .subtitle{font:italic 400 clamp(19px,2vw,23px)/1.35 var(--serif);color:var(--on-navy-2);margin:0 0 26px}
+.hero .opening{font-size:18px;line-height:1.6;color:#e9eef4;max-width:40em}
+.hero .actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
+.btn{display:inline-block;padding:13px 22px;border-radius:4px;font:600 16px/1 var(--sans);text-decoration:none}
+.btn-accent{background:var(--accent);color:#16202c}
+.btn-accent:hover{background:#f0b938}
+.hero .textlink{color:#fff;font-weight:600}
+.aaai-panel{align-self:start;border-left:1px solid rgba(255,255,255,.18);padding-left:40px}
+.aaai-id{display:flex;align-items:center;gap:16px;color:#fff;text-decoration:none;margin-bottom:28px}
+.aaai-id img{width:72px;height:auto;flex:none}
+.aaai-id b{display:block;font:700 24px/1.1 var(--sans)}
+.aaai-id span{display:block;font:400 15px/1.35 var(--sans);color:var(--on-navy-2);margin-top:4px}
+.aaai-id:hover b{text-decoration:underline;text-underline-offset:3px}
+.keydates{margin:0;display:grid;gap:0}
+.keydates div{display:grid;grid-template-columns:1fr auto;gap:12px;padding:12px 0;border-top:1px solid rgba(255,255,255,.14)}
+.keydates div:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.keydates dt{color:var(--on-navy-2);font-size:15px}
+.keydates dd{margin:0;font-weight:600;font-size:15px;text-align:right;color:#fff}
+.keydates .tbd{color:var(--on-navy-3);font-weight:500}
+.venue-note{font-size:14px;color:var(--on-navy-3);margin-top:14px}
 
 /* ---------- sections ---------- */
-main{counter-reset:sec}
-section{padding:48px 0 16px}
-h2{font:600 28px/1.2 var(--serif);margin:0 0 18px;counter-increment:sec}
-h2::before{content:counter(sec);display:inline-block;min-width:1.6em;color:var(--ink-3);font-weight:400}
-h3{font:600 20px/1.3 var(--serif);margin:32px 0 10px}
-h3 + p, h3 + ul, h3 + ol, h3 + table{margin-top:0}
-ul,ol{padding-left:1.3em;margin:0 0 1em}
-li{margin-bottom:.4em}
+section{padding:72px 0;border-top:1px solid var(--hair)}
+section.tint{background:var(--tint)}
+.hero + section{border-top:0}
+.sec{display:grid;grid-template-columns:240px minmax(0,1fr);gap:48px}
+.sec > h2{font-size:30px;line-height:1.15;margin:0;position:relative;padding-top:18px}
+.sec > h2::before{content:"";position:absolute;top:0;left:0;width:36px;height:3px;background:var(--accent)}
+.body{min-width:0}
+.body > :first-child{margin-top:0}
+.prose{max-width:46em}
+h3{font-size:22px;line-height:1.25;margin:40px 0 12px}
+ul,ol{padding-left:1.25em;margin:0 0 1em}
+li{margin-bottom:.45em}
 .lead-in{color:var(--ink-2)}
+.intro{font-size:19px;line-height:1.6;color:var(--ink)}
 
-/* procedure (method) */
-ol.procedure{list-style:none;padding:0;counter-reset:step;margin:4px 0 20px}
-ol.procedure li{counter-increment:step;display:grid;grid-template-columns:2.2em 1fr;gap:0 4px;margin:0 0 14px}
-ol.procedure li::before{content:counter(step) ".";font-weight:600}
-ol.procedure b{font-weight:600}
+/* two communities */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:28px 0 8px;border-top:2px solid var(--rule)}
+.duo > div{padding:18px 28px 6px 0}
+.duo > div + div{padding-left:28px;border-left:1px solid var(--hair)}
+.duo h4{font:600 13px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px}
+.duo p{margin:0 0 .6em}
 
-/* booktabs-style tables */
-table.bt{border-collapse:collapse;width:100%;margin:6px 0 24px;border-top:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);font-size:16.5px;line-height:1.5}
-table.bt thead th{font:600 14px/1.3 var(--sans);text-align:left;vertical-align:bottom;padding:10px 16px 8px 0;border-bottom:.75px solid var(--rule)}
-table.bt td,table.bt tbody th{text-align:left;vertical-align:top;padding:10px 16px 10px 0;border-bottom:.5px solid var(--hair)}
+/* procedure */
+ol.procedure{list-style:none;padding:0;counter-reset:step;margin:6px 0 24px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 36px}
+ol.procedure li{counter-increment:step;margin:0;padding-top:14px;border-top:1px solid var(--hair)}
+ol.procedure li::before{content:counter(step);display:block;font:600 34px/1 var(--serif);color:var(--num);margin-bottom:8px}
+ol.procedure b{display:block;font-weight:700;margin-bottom:4px}
+
+/* tables */
+table.bt{border-collapse:collapse;width:100%;margin:8px 0 22px;border-top:2px solid var(--rule);border-bottom:1px solid var(--rule);font-size:15.5px;line-height:1.55}
+table.bt thead th{font:600 13px/1.3 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);text-align:left;vertical-align:bottom;padding:12px 18px 10px 0;border-bottom:1px solid var(--rule)}
+table.bt td,table.bt tbody th{text-align:left;vertical-align:top;padding:14px 18px 14px 0;border-bottom:1px solid var(--hair)}
 table.bt tbody tr:last-child td,table.bt tbody tr:last-child th{border-bottom:0}
-table.bt tbody th{font-weight:600}
+table.bt tbody th{font-weight:700}
 table.bt td:last-child,table.bt th:last-child{padding-right:0}
 table.bt .muted{color:var(--ink-3)}
-table.bt .case-name{display:block;font-weight:600}
-table.bt .case-meta{display:block;font:400 14px/1.4 var(--sans);color:var(--ink-3);margin-top:2px}
-table.dates{max-width:36rem}
+table.bt .case-name{display:block;font:600 18px/1.3 var(--serif)}
+table.bt .case-meta{display:inline-block;font:600 12px/1 var(--sans);color:var(--ink-2);background:var(--bg);border:1px solid var(--hair);border-radius:3px;padding:4px 6px;margin-top:8px}
+section.tint table.bt .case-meta{background:#fff}
+table.dates{max-width:40rem}
 table.dates td:first-child{width:55%}
-table.dates td.num{font-family:var(--sans);font-size:16px}
-table.compare td{width:50%}
 
-/* topics */
 ul.topics{columns:2;column-gap:3rem;padding-left:1.1em}
 ul.topics li{break-inside:avoid}
 
-/* organizers roster */
-.roster{display:grid;grid-template-columns:repeat(3,1fr);gap:4px 24px;margin:8px 0 12px}
-.roster.four{grid-template-columns:repeat(4,1fr)}
-.member{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:start;padding:12px;margin:0 -12px;border-radius:4px;color:var(--ink);text-decoration:none;transition:background-color .15s ease}
-.member img.photo{width:76px;height:76px;border-radius:50%;object-fit:cover;display:block;background:var(--soft)}
-.member .name{font:600 16px/1.3 var(--sans);color:var(--link);display:block}
-.member .aff{font:400 14px/1.4 var(--sans);color:var(--ink-3);display:block;margin-top:3px}
-.member .orgs{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:8px}
+/* organizers */
+.roster{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 20px;margin:12px 0 8px}
+.member{display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start;padding:14px;margin:0 -14px;border-radius:6px;color:var(--ink);text-decoration:none;transition:background-color .15s ease}
+.member img.photo{width:80px;height:80px;border-radius:50%;object-fit:cover;display:block;background:var(--tint)}
+.member .name{font:600 16.5px/1.3 var(--sans);color:var(--link);display:block}
+.member .aff{font:400 14px/1.45 var(--sans);color:var(--ink-3);display:block;margin-top:3px}
+.member .orgs{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:9px}
 .member .orgs img{height:16px;width:auto;max-width:96px;object-fit:contain;filter:grayscale(1);opacity:.6;transition:filter .15s ease,opacity .15s ease}
 .member .orgs img[src$="mila.svg"]{height:20px}
 .member .orgs img[src$="harvard.svg"]{height:18px}
@@ -152,46 +170,55 @@ ul.topics li{break-inside:avoid}
 .member .orgs img[src$="stanford.svg"],.member .orgs img[src$="cohere.png"]{height:14px}
 .member .orgs img[src$="cambridge.svg"]{height:20px}
 .member .orgs img[src$="iairo.png"]{height:18px;filter:grayscale(1) invert(1)}
-.member .orgs .txt{font:600 12px/1 var(--sans);color:var(--ink-3);letter-spacing:.01em}
-.member:hover,.member:focus-visible{background:var(--soft)}
-.member:hover .name,.member:focus-visible .name{text-decoration:underline;text-underline-offset:2px}
+.member .orgs .txt{font:600 12px/1 var(--sans);color:var(--ink-3)}
+.member:hover,.member:focus-visible{background:var(--tint)}
+.member:hover .name,.member:focus-visible .name{text-decoration:underline;text-underline-offset:3px}
 .member:hover .orgs img,.member:focus-visible .orgs img{filter:none;opacity:1}
 .member:hover .orgs img[src$="iairo.png"],.member:focus-visible .orgs img[src$="iairo.png"]{filter:invert(1)}
 .member:hover .orgs .txt{color:var(--ink)}
+.roster.two{grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px}
+.subhead{font:600 13px/1.3 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:0 0 4px}
+.subhead + .roster{margin-top:4px}
+.roster + .subhead{margin-top:34px}
 
-footer{margin-top:48px;border-top:1px solid var(--hair);padding:22px 0 40px;font:400 14px/1.6 var(--sans);color:var(--ink-3)}
-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px}
-footer a{color:var(--ink-2)}
+/* footer */
+footer{background:var(--navy);color:var(--on-navy-2);font:400 15px/1.6 var(--sans)}
+footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding-top:28px;padding-bottom:28px}
+footer .fid{display:flex;align-items:center;gap:14px}
+footer .fid img{width:40px;height:auto}
+footer a{color:#fff}
 
-/* dark mode adjustments for images */
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .aaai img{filter:none}
   :root:not([data-theme="light"]) .member .orgs img{filter:grayscale(1) invert(1) brightness(1.2);opacity:.7}
   :root:not([data-theme="light"]) .member .orgs img[src$="iairo.png"]{filter:grayscale(1);opacity:.7}
   :root:not([data-theme="light"]) .member:hover .orgs img{filter:grayscale(1) invert(1) brightness(1.4);opacity:1}
   :root:not([data-theme="light"]) .member:hover .orgs img[src$="iairo.png"]{filter:none}
+  :root:not([data-theme="light"]) section.tint table.bt .case-meta{background:var(--bg)}
+  :root:not([data-theme="light"]) .b2e svg{color:#fff}
 }
-:root[data-theme="dark"] .aaai img{filter:none}
 
-@media (max-width:980px) and (min-width:761px){
-  .roster,.roster.four{grid-template-columns:repeat(2,1fr)}
+@media (max-width:1020px){
+  .hero .wrap{grid-template-columns:1fr;gap:40px}
+  .aaai-panel{border-left:0;padding-left:0;border-top:1px solid rgba(255,255,255,.18);padding-top:28px}
+  .sec{grid-template-columns:1fr;gap:22px}
+  .roster,.roster.two{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
-@media (max-width:760px){
-  body{font-size:17px}
-  .wrap{padding:0 16px}
-  .titleblock{padding:36px 0 30px}
-  .opening{font-size:18.5px}
+@media (max-width:700px){
+  body{font-size:16.5px}
+  .wrap{padding:0 18px}
+  .hero .wrap{padding-top:44px;padding-bottom:44px}
+  section{padding:52px 0}
+  .duo{grid-template-columns:1fr}
+  .duo > div + div{padding-left:0;border-left:0;border-top:1px solid var(--hair)}
+  ol.procedure{grid-template-columns:1fr}
   ul.topics{columns:1}
-  .divider{display:none}
-  /* stacked tables */
+  .roster,.roster.two{grid-template-columns:1fr}
   table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-  table.stack,table.stack tbody,table.stack tr,table.stack td,table.stack th{display:block;width:auto}
-  table.stack tr{padding:12px 0;border-bottom:.5px solid var(--hair)}
+  table.stack,table.stack tbody,table.stack tr,table.stack td,table.stack th{display:block;width:auto!important}
+  table.stack tr{padding:14px 0;border-bottom:1px solid var(--hair)}
   table.stack tbody tr:last-child{border-bottom:0}
   table.stack td,table.stack tbody th{border:0;padding:3px 0}
-  table.stack td[data-label]::before{content:attr(data-label);display:block;font:600 13px/1.4 var(--sans);color:var(--ink-3);margin-top:6px}
-  table.compare td{width:auto}
-  .roster,.roster.four{grid-template-columns:1fr}
+  table.stack td[data-label]::before{content:attr(data-label);display:block;font:600 12px/1.4 var(--sans);letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:8px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -200,24 +227,16 @@ footer a{color:var(--ink-2)}
 
 <header class="masthead">
   <div class="wrap">
-    <div class="lockup">
-      <a class="aaai" href="https://aaai.org/conference/aaai/aaai-27/" aria-label="AAAI-27 conference website">
-        <img src="assets/logos/aaai27-mark-white.png" alt="AAAI-27" width="36" height="34">
-        <span>AAAI-27<small>Bridge Program</small></span>
-      </a>
-      <span class="divider" aria-hidden="true"></span>
-      <a class="b2e" href="#top" aria-label="Bench2Evidence, top of page">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M2 42h10v18H2zM16 29h10v31H16zM30 16h32v11H30zM30 27h10v33H30zM50 27h12v33H50z"/></svg>
-        Bench2Evidence
-      </a>
-    </div>
+    <a class="b2e" href="#top" aria-label="Bench2Evidence, top of page">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><path fill="currentColor" d="M2 42h10v18H2zM16 29h10v31H16zM30 16h32v11H30zM30 27h10v33H30zM50 27h12v33H50z"/></svg>
+      Bench2Evidence
+    </a>
     <nav class="site" aria-label="Sections">
       <ul>
         <li><a href="#about">About</a></li>
         <li><a href="#cases">Cases</a></li>
         <li><a href="#call">Call for Participation</a></li>
         <li><a href="#dates">Dates</a></li>
-        <li><a href="#program">Program</a></li>
         <li><a href="#organizers">Organizers</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -227,39 +246,52 @@ footer a{color:var(--ink-2)}
 
 <main id="top">
 
-<div class="titleblock">
+<div class="hero">
+  <canvas class="flow" aria-hidden="true"></canvas>
   <div class="wrap">
-    <h1><span class="l">From Agent Benchmarks</span> <span class="l">to Deployment Evidence</span></h1>
-    <p class="subtitle">Bridging Evaluation Science and Deployment Practice</p>
-    <p class="venue">A two-day, in-person Bridge at <a href="https://aaai.org/conference/aaai/aaai-27/">AAAI-27</a>, February 16–17, 2027, Palais des Congrès, Montréal</p>
-    <div class="measure">
+    <div>
+      <p class="kicker">AAAI-27 Bridge Program</p>
+      <h1><span class="l">From Agent Benchmarks</span> <span class="l">to Deployment Evidence</span></h1>
+      <p class="subtitle">Bridging Evaluation Science and Deployment Practice</p>
       <p class="opening">Your team has a benchmark score for an agent. Is that enough to decide whether to deploy it in your setting? Evaluators and practitioners audit two shared cases together, one in industrial maintenance and one in software engineering. Agent runs are recorded in advance, so no compute or coding is needed, and no measurement background is assumed.</p>
-      <p class="submitline">Submissions are due <strong>December 1, 2026 (AoE)</strong> on <a href="https://openreview.net/group?id=AAAI.org/2027/Bridge/Bench2Evidence">OpenReview</a>. See the <a href="#call">call for participation</a>.</p>
+      <div class="actions">
+        <a class="btn btn-accent" href="https://openreview.net/group?id=AAAI.org/2027/Bridge/Bench2Evidence">Submit on OpenReview</a>
+        <a class="textlink" href="#call">Read the call for participation</a>
+      </div>
     </div>
+    <aside class="aaai-panel" aria-label="AAAI-27 and key dates">
+      <a class="aaai-id" href="https://aaai.org/conference/aaai/aaai-27/">
+        <img src="assets/logos/aaai27-mark-white.png" alt="AAAI-27" width="72" height="67">
+        <span><b>AAAI-27</b><span>Montréal, Canada</span></span>
+      </a>
+      <dl class="keydates">
+        <div><dt>Bridge</dt><dd>February 16–17, 2027</dd></div>
+        <div><dt>Submissions due</dt><dd>December 1, 2026 (AoE)</dd></div>
+        <div><dt>Notifications</dt><dd>December 13, 2026</dd></div>
+        <div><dt>Case packets</dt><dd class="tbd">TBD</dd></div>
+      </dl>
+      <p class="venue-note">In person at the Palais des Congrès, Montréal.</p>
+    </aside>
   </div>
 </div>
 
 <!-- ================= ABOUT ================= -->
 <section id="about">
-  <div class="wrap">
+  <div class="wrap sec">
     <h2>About</h2>
-    <div class="measure">
-      <p>A headline score records whether an agent met its objective. It does not say how, whether the tasks resemble your setting, or whether the agent leaked data, broke policy, took an unacceptable action, or needed so much correction that it saved no one any time.</p>
+    <div class="body">
+    <div class="prose">
+      <p class="intro">A headline score records whether an agent met its objective. It does not say how, whether the tasks resemble your setting, or whether the agent leaked data, broke policy, took an unacceptable action, or needed so much correction that it saved no one any time.</p>
       <p>Answering takes two communities. Evaluators know how scores are produced; practitioners know which failures are unacceptable and what must hold before anyone authorizes use. This Bridge brings evaluators and practitioners together to build a reusable method for connecting evaluation evidence to deployment decisions.</p>
     </div>
 
-    <table class="bt compare stack">
-      <thead><tr><th scope="col">Evaluation science</th><th scope="col">Deployment practice</th></tr></thead>
-      <tbody>
-        <tr>
-          <td data-label="Evaluation science">Evaluation researchers, benchmark builders, and agent developers, who know whether a benchmark and scorer measure what they claim; contamination, run-to-run variance, and task coverage; and what a number can and cannot support.</td>
-          <td data-label="Deployment practice">Maintenance, reliability, and software engineers, plant operators, applied AI engineers, and safety and human factors specialists, who know which failures are unacceptable and which are tolerable, how people check and correct an agent's work, and what must hold before anyone authorizes use.</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="duo">
+      <div><h4>Evaluation science</h4><p>Evaluation researchers, benchmark builders, and agent developers know whether a benchmark and scorer measure what they claim; contamination, run-to-run variance, and task coverage; and what a number can and cannot support.</p></div>
+      <div><h4>Deployment practice</h4><p>Maintenance, reliability, and software engineers, plant operators, applied AI engineers, and safety and human factors specialists know which failures are unacceptable and which are tolerable, how people check and correct an agent's work, and what must hold before anyone authorizes use.</p></div>
+    </div>
 
     <h3>How the audit works</h3>
-    <div class="measure">
+    <div class="prose">
       <p>Mixed teams of six to eight audit shared cases in four steps.</p>
       <ol class="procedure">
         <li><div><b>Read the operational setting.</b> Teams receive a description of the workflow, the people in it, and the proposed use of the agent. They do not see the benchmark yet.</div></li>
@@ -269,16 +301,18 @@ footer a{color:var(--ink-2)}
       </ol>
       <p>We will release the reviewed audits and a draft reporting protocol that builds on <a href="https://prep-eval.github.io/prep-eval/">PREP-Eval</a> and maps to the Agentic Benchmark Checklist, BetterBench, and Evaluation Cards.</p>
     </div>
+    </div>
   </div>
 </section>
 
 <!-- ================= CASES ================= -->
-<section id="cases">
-  <div class="wrap">
+<section id="cases" class="tint">
+  <div class="wrap sec">
     <h2>Cases</h2>
-    <p class="measure">Every team audits the two shared cases. A third case on agent security is planned as an optional track and depends on participant interest. No case requires production access or private traces.</p>
+    <div class="body">
+    <p class="prose">Every team audits the two shared cases. A third case on agent security is planned as an optional track and depends on participant interest. No case requires production access or private traces.</p>
     <table class="bt stack">
-      <thead><tr><th scope="col" style="width:19%">Case</th><th scope="col" style="width:25%">Setting</th><th scope="col" style="width:27%">Evidence</th><th scope="col">The audit asks</th></tr></thead>
+      <thead><tr><th scope="col" style="width:22%">Case</th><th scope="col" style="width:24%">Setting</th><th scope="col" style="width:24%">Evidence</th><th scope="col">The audit asks</th></tr></thead>
       <tbody>
         <tr>
           <th scope="row"><span class="case-name">1. Industrial asset maintenance</span><span class="case-meta">Day 1</span></th>
@@ -300,15 +334,17 @@ footer a{color:var(--ink-2)}
         </tr>
       </tbody>
     </table>
-    <p class="measure lead-in">Case packets, each with the operational setting and an audit template, will be shared before the event.</p>
+    <p class="prose lead-in">Case packets, each with the operational setting and an audit template, will be shared before the event.</p>
+    </div>
   </div>
 </section>
 
 <!-- ================= CALL ================= -->
 <section id="call">
-  <div class="wrap">
+  <div class="wrap sec">
     <h2>Call for Participation</h2>
-    <div class="measure">
+    <div class="body">
+    <div class="prose">
       <p>We expect 100 to 150 participants. We invite evaluation researchers, benchmark builders, and agent developers; maintenance, reliability, and software engineers; plant operators; applied AI engineers; safety assurance and human factors researchers; and students. No measurement background is assumed. The Bridge is open to all AAAI-27 registrants; those who submit are placed in audit teams first.</p>
     </div>
 
@@ -337,12 +373,12 @@ footer a{color:var(--ink-2)}
       </tbody>
     </table>
 
-    <div class="measure">
+    <div class="prose">
       <p><b>Practitioner use cases</b> describe a workflow, a decision about using an agent in it, and which failures would be serious or tolerable. Use public information only. Use cases help us form teams.</p>
     </div>
 
     <h3>Topics</h3>
-    <p class="measure">We welcome papers, statements of interest, and use cases from both evaluation and deployment. Topics include, but are not limited to:</p>
+    <p class="prose">We welcome papers, statements of interest, and use cases from both evaluation and deployment. Topics include, but are not limited to:</p>
     <ul class="topics">
       <li>Whether benchmarks and scorers measure what they claim, including data contamination</li>
       <li>Stability of results across runs and tasks</li>
@@ -354,20 +390,22 @@ footer a{color:var(--ink-2)}
     </ul>
 
     <h3>Submission guidelines</h3>
-    <ul class="measure">
+    <ul class="prose">
       <li>Submit through <a href="https://openreview.net/group?id=AAAI.org/2027/Bridge/Bench2Evidence">OpenReview</a> by December 1, 2026 (AoE). Notifications will be sent on December 13, 2026.</li>
       <li>Papers use the AAAI-27 format; see the <a href="https://aaai.org/authorkit27/">AAAI-27 author kit</a>.</li>
       <li>Submissions are non-archival: they are not published in the AAAI-27 proceedings, and published work is welcome.</li>
       <li>New OpenReview profiles without an institutional email address can take time to be approved, so create your profile early.</li>
       <li>All participants are expected to follow the <a href="https://aaai.org/aaai-conferences-and-symposia/aaai-code-of-conduct-for-conferences-and-events/">AAAI Code of Conduct</a>.</li>
     </ul>
+    </div>
   </div>
 </section>
 
 <!-- ================= DATES ================= -->
-<section id="dates">
-  <div class="wrap">
-    <h2>Important Dates</h2>
+<section id="dates" class="tint">
+  <div class="wrap sec">
+    <h2>Dates and Program</h2>
+    <div class="body">
     <table class="bt dates">
       <tbody>
         <tr><td>Submissions due</td><td class="num">December 1, 2026 (AoE)</td></tr>
@@ -376,22 +414,18 @@ footer a{color:var(--ink-2)}
         <tr><td><b>Bridge at AAAI-27, Montréal</b></td><td class="num"><b>February 16–17, 2027</b></td></tr>
       </tbody>
     </table>
-  </div>
-</section>
-
-<!-- ================= PROGRAM ================= -->
-<section id="program">
-  <div class="wrap">
-    <h2>Program</h2>
-    <p class="measure">Two days, in person, February 16–17, 2027. The detailed program is TBD and will be posted here.</p>
+    <h3 id="program">Program</h3>
+    <p class="prose">Two days, in person, February 16–17, 2027. The detailed program is TBD and will be posted here.</p>
+    </div>
   </div>
 </section>
 
 <!-- ================= ORGANIZERS ================= -->
 <section id="organizers">
-  <div class="wrap">
+  <div class="wrap sec">
     <h2>Organizers</h2>
-    <h3 style="margin-top:8px">Bridge Committee</h3>
+    <div class="body">
+    <p class="subhead">Bridge Committee</p>
     <div class="roster">
       <a class="member" href="https://khvedant02.github.io/"><img class="photo" src="photo/people/vedant.jpg" alt="" loading="lazy"><span><span class="name">Vedant Khandelwal</span><span class="aff">IBM Research</span><span class="orgs"><img src="assets/logos/ibm.svg" alt="IBM"></span></span></a>
       <a class="member" href="https://scholar.google.com/citations?user=c06_VJAAAAAJ"><img class="photo" src="photo/people/dhaval.jpg" alt="" loading="lazy"><span><span class="name">Dhaval Patel</span><span class="aff">IBM Research</span><span class="orgs"><img src="assets/logos/ibm.svg" alt="IBM"></span></span></a>
@@ -404,21 +438,24 @@ footer a{color:var(--ink-2)}
       <a class="member" href="https://ankareuel.com/"><img class="photo" src="photo/people/anka.jpg" alt="" loading="lazy"><span><span class="name">Anka Reuel</span><span class="aff">Stanford University; Harvard Kennedy School and Harvard SEAS (from January 2027)</span><span class="orgs"><img src="assets/logos/stanford.svg" alt="Stanford University"><img src="assets/logos/harvard.svg" alt="Harvard University"></span></span></a>
     </div>
 
-    <h3>Steering Committee</h3>
-    <div class="roster four">
+    <p class="subhead">Steering Committee</p>
+    <div class="roster two">
       <a class="member" href="https://amit.aiisc.ai/"><img class="photo" src="photo/people/amit.jpg" alt="" loading="lazy"><span><span class="name">Amit Sheth</span><span class="aff">University of South Carolina and IAIRO</span><span class="orgs"><img src="assets/logos/southcarolina.svg" alt="University of South Carolina"><img src="assets/logos/iairo.png" alt="IAIRO"></span></span></a>
       <a class="member" href="https://research.ibm.com/people/francesca-rossi"><img class="photo" src="photo/people/rossi.jpg" alt="" loading="lazy"><span><span class="name">Francesca Rossi</span><span class="aff">IBM Research</span><span class="orgs"><img src="assets/logos/ibm.svg" alt="IBM"></span></span></a>
       <a class="member" href="https://www.nist.gov/people/craig-greenberg"><img class="photo" src="photo/people/craig.jpg" alt="" loading="lazy"><span><span class="name">Craig Greenberg</span><span class="aff">NIST</span></span></a>
       <a class="member" href="https://josephorallo.webs.upv.es/"><img class="photo" src="photo/people/jose.jpg" alt="" loading="lazy"><span><span class="name">José Hernández-Orallo</span><span class="aff">University of Cambridge</span><span class="orgs"><img src="assets/logos/cambridge.svg" alt="University of Cambridge"></span></span></a>
+    </div>
     </div>
   </div>
 </section>
 
 <!-- ================= CONTACT ================= -->
 <section id="contact">
-  <div class="wrap">
+  <div class="wrap sec">
     <h2>Contact</h2>
-    <p class="measure">Questions about submissions, cases, or attending can go to Vedant Khandelwal (<a href="mailto:vedantk@ibm.com">vedantk@ibm.com</a>) or Dhaval Patel (<a href="mailto:pateldha@us.ibm.com">pateldha@us.ibm.com</a>), IBM Research.</p>
+    <div class="body">
+    <p class="prose">Questions about submissions, cases, or attending can go to Vedant Khandelwal (<a href="mailto:vedantk@ibm.com">vedantk@ibm.com</a>) or Dhaval Patel (<a href="mailto:pateldha@us.ibm.com">pateldha@us.ibm.com</a>), IBM Research.</p>
+    </div>
   </div>
 </section>
 
@@ -426,10 +463,67 @@ footer a{color:var(--ink-2)}
 
 <footer>
   <div class="wrap">
-    <span>Part of the <a href="https://aaai.org/conference/aaai/aaai-27/">AAAI-27</a> Bridge Program, Montréal, February 16–17, 2027.</span>
-    <span><a href="https://aaai.org/aaai-conferences-and-symposia/aaai-code-of-conduct-for-conferences-and-events/">Code of Conduct</a></span>
+    <a class="fid" href="https://aaai.org/conference/aaai/aaai-27/" style="text-decoration:none;color:inherit"><img src="assets/logos/aaai27-mark-white.png" alt="AAAI-27" width="40" height="37"><span>Part of the AAAI-27 Bridge Program, Montréal, February 16–17, 2027</span></a>
+    <span><a href="https://aaai.org/aaai-conferences-and-symposia/aaai-code-of-conduct-for-conferences-and-events/">AAAI Code of Conduct</a></span>
   </div>
 </footer>
 
+<script>
+/* Hero background: scattered points (benchmark scores) settle into ordered lanes (evidence) as they move right. */
+(function(){
+  var hero=document.querySelector('.hero'), cv=hero&&hero.querySelector('canvas.flow');
+  if(!cv||!cv.getContext) return;
+  var ctx=cv.getContext('2d'), dpr=Math.min(window.devicePixelRatio||1,2);
+  var W=0,H=0,pts=[],lanes=[],running=false,visible=true,raf=0,last=0;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function smooth(t){t=Math.max(0,Math.min(1,t));return t*t*(3-2*t);}
+  function resize(){
+    var r=hero.getBoundingClientRect(); W=r.width; H=r.height;
+    cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr); ctx.setTransform(dpr,0,0,dpr,0,0);
+    var n=Math.max(5,Math.round(H/70)); lanes=[];
+    for(var i=0;i<n;i++) lanes.push(H*(0.12+0.76*i/(n-1)));
+    var count=Math.min(170,Math.round(W*H/6000)); pts=[];
+    for(var j=0;j<count;j++) pts.push(make(Math.random()*W));
+  }
+  function make(x){
+    return {x:x,y0:Math.random()*H,lane:lanes[(Math.random()*lanes.length)|0],
+      v:14+Math.random()*22,ph:Math.random()*6.283,f:0.6+Math.random()*1.4,a:18+Math.random()*34,r:1.2+Math.random()*1.1};
+  }
+  function yAt(p,x,t){var k=smooth((x/W-0.15)/0.7);return (p.y0+Math.sin(t*p.f+p.ph+x*0.012)*p.a)*(1-k)+p.lane*k;}
+  function draw(t){
+    ctx.clearRect(0,0,W,H);
+    // faint lanes on the right, where the evidence settles
+    for(var i=0;i<lanes.length;i++){
+      var g=ctx.createLinearGradient(W*0.45,0,W,0);
+      g.addColorStop(0,'rgba(255,255,255,0)');g.addColorStop(1,'rgba(255,255,255,0.10)');
+      ctx.strokeStyle=g;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(W*0.45,lanes[i]);ctx.lineTo(W,lanes[i]);ctx.stroke();
+    }
+    for(var j=0;j<pts.length;j++){
+      var p=pts[j], y=yAt(p,p.x,t), k=smooth((p.x/W-0.15)/0.7);
+      var alpha=0.16+0.46*k;
+      // short trail
+      var x2=p.x-10-p.v*0.4, y2=yAt(p,x2,t-0.15);
+      ctx.strokeStyle='rgba(143,184,236,'+(alpha*0.55)+')';ctx.lineWidth=1;
+      ctx.beginPath();ctx.moveTo(x2,y2);ctx.lineTo(p.x,y);ctx.stroke();
+      ctx.fillStyle=k>0.92?'rgba(224,165,38,'+(alpha+0.1)+')':'rgba(255,255,255,'+alpha+')';
+      ctx.beginPath();ctx.arc(p.x,y,p.r,0,6.283);ctx.fill();
+    }
+  }
+  function step(now){
+    if(!running) return;
+    var dt=last?Math.min(0.05,(now-last)/1000):0; last=now;
+    for(var j=0;j<pts.length;j++){var p=pts[j];p.x+=p.v*dt;if(p.x>W+12){pts[j]=make(-12);}}
+    draw(now/1000); raf=requestAnimationFrame(step);
+  }
+  function start(){if(reduce||running||!visible||document.hidden) return;running=true;last=0;raf=requestAnimationFrame(step);}
+  function stop(){running=false;cancelAnimationFrame(raf);}
+  resize(); draw(0);
+  if(window.ResizeObserver){new ResizeObserver(function(){resize();draw(performance.now()/1000);}).observe(hero);}
+  else window.addEventListener('resize',function(){resize();draw(0);});
+  if(window.IntersectionObserver){new IntersectionObserver(function(e){visible=e[0].isIntersecting;visible?start():stop();}).observe(hero);}
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():start();});
+  start();
+})();
+</script>
 </body>
 </html>
