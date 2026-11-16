@@ -32,7 +32,7 @@ For a future event, copy the series lockup and add the event line under the name
 
 ## Host-conference marks
 
-Host-conference logos, such as the AAAI-27 mark in `../logos/`, belong to their owners. Show them next to the Bench2Evidence lockup, separated by space or a rule, and never merge them into it.
+Host-conference logos belong to their owners. The official AAAI logos (`../logos/aaai-color.svg`, `../logos/aaai-white.svg`, from https://aaai.org/about-aaai/aaai-logos/) are offered for AAAI workshop and symposium websites; use them unaltered, never recoloured. Show them next to the Bench2Evidence lockup, separated by space or a rule, and never merge them into it.
 
 ## Clearance
 

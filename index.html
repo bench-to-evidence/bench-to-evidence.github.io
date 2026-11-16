@@ -102,9 +102,9 @@ canvas.flow{position:fixed;inset:0;width:100vw;height:100vh;display:block;pointe
 .btn-accent:hover{background:#f0b938}
 .hero .textlink{color:var(--link);font-weight:600}
 .aaai-panel{align-self:start;border-left:1px solid var(--hair);padding-left:40px}
-.aaai-id{display:flex;align-items:center;gap:16px;color:var(--ink);text-decoration:none;margin-bottom:28px}
-.aaai-id img{width:72px;height:auto;flex:none;filter:brightness(0)}
-.aaai-id b{display:block;font:700 24px/1.1 var(--sans)}
+.aaai-id{display:block;color:var(--ink);text-decoration:none;margin-bottom:26px}
+.aaai-id img{display:block;width:250px;max-width:100%;height:auto;margin-bottom:16px}
+.aaai-id b{display:block;font:700 22px/1.15 var(--sans);color:var(--ink)}
 .aaai-id span{display:block;font:400 15px/1.35 var(--sans);color:var(--ink-3);margin-top:4px}
 .aaai-id:hover b{text-decoration:underline;text-underline-offset:3px}
 .keydates{margin:0;display:grid;gap:0}
@@ -200,14 +200,12 @@ ul.topics li{break-inside:avoid}
 footer{border-top:1px solid var(--hair);color:var(--ink-3);font:400 15px/1.6 var(--sans)}
 footer .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;padding-top:28px;padding-bottom:28px}
 footer .fid{display:flex;align-items:center;gap:14px}
-footer .fid img{width:40px;height:auto;filter:brightness(0)}
+footer .fid img{display:block;width:150px;height:auto}
 footer a{color:var(--link)}
 
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]) .aaai-id img,:root:not([data-theme="light"]) footer .fid img{filter:none}
   :root:not([data-theme="light"]) .b2e svg{color:#fff}
 }
-:root[data-theme="dark"] .aaai-id img,:root[data-theme="dark"] footer .fid img{filter:none}
 
 
 @media (max-width:1020px){
@@ -277,7 +275,7 @@ footer a{color:var(--link)}
     </div>
     <aside class="aaai-panel" aria-label="AAAI-27 and key dates">
       <a class="aaai-id" href="https://aaai.org/conference/aaai/aaai-27/">
-        <img src="assets/logos/aaai27-mark-white.png" alt="AAAI-27" width="72" height="67">
+        <picture><source srcset="assets/logos/aaai-white.svg" media="(prefers-color-scheme: dark)"><img src="assets/logos/aaai-color.svg" alt="AAAI, Association for the Advancement of Artificial Intelligence" width="250" height="59"></picture>
         <span><b>AAAI-27</b><span>Montréal, Canada</span></span>
       </a>
       <dl class="keydates">
@@ -556,7 +554,7 @@ footer a{color:var(--link)}
 
 <footer>
   <div class="wrap">
-    <a class="fid" href="https://aaai.org/conference/aaai/aaai-27/" style="text-decoration:none;color:inherit"><img src="assets/logos/aaai27-mark-white.png" alt="AAAI-27" width="40" height="37"><span>Part of the AAAI-27 Bridge Program, Montréal, February 16–17, 2027</span></a>
+    <a class="fid" href="https://aaai.org/conference/aaai/aaai-27/" style="text-decoration:none;color:inherit"><picture><source srcset="assets/logos/aaai-white.svg" media="(prefers-color-scheme: dark)"><img src="assets/logos/aaai-color.svg" alt="AAAI, Association for the Advancement of Artificial Intelligence" width="150" height="35"></picture><span>Part of the AAAI-27 Bridge Program, Montréal, February 16–17, 2027</span></a>
     <span><a href="https://aaai.org/aaai-conferences-and-symposia/aaai-code-of-conduct-for-conferences-and-events/">AAAI Code of Conduct</a></span>
   </div>
 </footer>
